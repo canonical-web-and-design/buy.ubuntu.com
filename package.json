@@ -1,0 +1,35 @@
+{
+  "name": "buy.ubuntu.com",
+  "version": "1.0.0",
+  "description": "Theme for buy.ubuntu.com",
+  "scripts": {
+    "migrate": "slate migrate",
+    "watch": "slate watch",
+    "start:dev": "slate start --env development",
+    "start:prod": "slate start --env production",
+    "deploy:dev": "slate deploy --env development",
+    "deploy:prod": "slate deploy --env production",
+    "build": "slate build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/canonical-web-and-design/buy.ubuntu.com.git"
+  },
+  "keywords": [
+    "ubuntu",
+    "canonical",
+    "shopify"
+  ],
+  "author": "Canonical",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/canonical-web-and-design/buy.ubuntu.com/issues"
+  },
+  "homepage": "https://github.com/canonical-web-and-design/buy.ubuntu.com#readme",
+  "dependencies": {
+    "@shopify/slate": "^0.14.0"
+  },
+  "devDependencies": {
+    "@shopify/slate-tools": "0.14.0"
+  }
+}
