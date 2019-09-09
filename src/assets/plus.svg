@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="Plus_copy_2" data-name="Plus copy 2" class="cls-1" d="M1123,310h2v16h-2V310Zm-7,7h16v2h-16v-2Z" transform="translate(-1116 -310)"/>
+</svg>

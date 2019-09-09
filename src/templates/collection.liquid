@@ -1,0 +1,88 @@
+{% include 'header' %}
+
+<div class="wrap--greybkgd">
+
+	<article class="article collection-grid">
+
+		{% for product in collection.products %}
+		<div class="collection-grid__product box--large">
+
+
+				<div class="product-heading">
+					<h2 class="product-heading__headline">{{ product.title }}</h2>
+					<h3 class="product-heading__price">{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
+					<p>{{ product.metafields.c_f['[p][_t]General Description'] }}</p>
+				</div><!-- .product-heading -->
+
+				<div class="product-content">
+					<span class="check-list">
+					{{ product.description | replace: '<li>**', '<li class="checked">' }}
+					</span>
+				</div><!-- .product-content -->
+
+				{% if product.available %}
+				{% if product.variants.size > 1 %}
+					<div class="product-split-actions">
+						{% for variant in product.variants %}
+							{% assign min_purchase = '1'  %}
+							{% for tag in product.tags %}
+								{% if tag contains 'min-purchase' %}
+									{% assign min_purchase = tag | remove: 'min-purchase-' %}
+								{% endif %}
+							{% endfor %}
+						<form action="/cart/add" method="post">
+							<div class="product-action {% cycle 'left', 'right' %}">
+								<input type="hidden" name="id" value="{{ variant.id }}">
+								<input type="hidden" name="quantity" value="{{ min_purchase }}">
+								<input type="submit" class="button--fullwidth" value="Add {{ variant.option1 }} to Cart">
+							</div><!-- .product-action -->
+						</form>
+						{% endfor %}
+					</div>
+				{% else %}
+					{% assign min_purchase = '1'  %}
+					{% for tag in product.tags %}
+						{% if tag contains 'min-purchase' %}
+							{% assign min_purchase = tag | remove: 'min-purchase-' %}
+						{% endif %}
+					{% endfor %}
+					<form action="/cart/add" method="post">
+						<div class="product-action">
+							<input type="hidden" name="id" value="{{ product.variants.first.id }}">
+							<input type="hidden" name="quantity" value="{{ min_purchase }}">
+							<input type="submit" class="button--fullwidth" value="Add to Cart">
+						</div><!-- .product-action -->
+					</form>
+				{% endif %}
+				{% endif %}
+
+
+		</div><!-- .collection-grid--product -->
+
+		{% else %}
+		<p>There are no products in this view.</p>
+		{% endfor %}
+
+	</article><!-- .article -->
+
+</div><!-- .wrap -->
+
+{% comment %}
+{% unless collection.description == blank or collection.description.empty? %}
+<div class="wrap--darkgreybkgd">
+
+	<article class="article article-base">
+
+		{% unless collection.metafields.c_f['[c][_t]Pkg Includes Headline'] == blank or collection.metafields.c_f['[c][_t]Pkg Includes Headline'].empty? %}
+		<h3 class="article-headline">{{ collection.metafields.c_f['[c][_t]Pkg Includes Headline'] }}</h3>
+		{% endunless %}
+
+		<div class="multi-column-list list-headlines">
+		{{ collection.description }}
+		</div><!-- .multi-column -->
+
+	</article><!-- .article -->
+
+</div><!-- .wrap -->
+{% endunless %}
+{% endcomment %}

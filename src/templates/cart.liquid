@@ -1,0 +1,125 @@
+{% comment %}{%  include 'subscription-cart-footer' %} {% endcomment %}
+ {% include 'header' %}
+
+<div class="wrap--greylighterbkgd">
+
+	{% if cart.item_count > 0 %}
+	<section class="shopping-cart">
+
+		<form action="/cart" method="post">
+
+			<div class="cart-items">
+
+				{% for item in cart.items %}
+
+					{% comment %}
+					Determining the handle of the collection that was last seen for the 'continue shopping' link.
+					{% endcomment %}
+
+					{% assign collection_url = item.product.collections.last.url %}
+					{% if collection_url == '/collections/frontpage' or collection_url == blank %}
+						{% assign collection_url = '/collections/all' %}
+					{% endif %}
+
+					{% if forloop.first %}
+						{% assign continue_shopping_url = collection_url %}
+					{% endif %}
+
+					{% assign min_purchase = '1'  %}
+					{% for tag in item.product.tags %}
+						{% if tag contains 'min-purchase' %}
+							{% assign min_purchase = tag | remove: 'min-purchase-' %}
+						{% endif %}
+					{% endfor %}
+
+					{% assign min_increment = '1'  %}
+					{% for tag in item.product.tags %}
+						{% if tag contains 'increment-by' %}
+							{% assign min_increment = tag | remove: 'increment-by-' %}
+						{% endif %}
+					{% endfor %}
+
+					<div class="cart_item" data-increment-amount="{{ min_increment }}" data-min-amount="{{ min_purchase }}" data-product-index="{{ forloop.index }}">
+						{% assign product_icon = 'icon-' %}
+						{% if item.title contains 'Desktop' %}
+							{% assign product_icon = product_icon | append: 'desktop.png' %}
+						{% elsif item.title contains 'Server' %}
+							{% assign product_icon = product_icon | append: 'servers.png' %}
+						{% elsif item.title contains 'Guest' %}
+							{% assign product_icon = product_icon | append: 'vguests.png' %}
+						{% endif %}
+						<img src="{{ product_icon | asset_url }}" alt="{{ item.title }}" class="cart_item--icon">
+						<div class="cart_item--copy">
+							<h2 class="cart_item--name"><a href="{{ collection_url }}" title="{{ item.title }}">{{ item.title }}</a></h2>
+							<h5 class="cart_item--price">{{ item.line_price | money_with_currency }}</h5>
+						</div>
+						<div class="cart_item--actions">
+							<div class="cart_item--qty">
+								<span class="decrement">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="2" viewBox="0 0 16 2">
+									  <rect id="Minus" class="minus-icon" width="16" height="2"/>
+									</svg>
+								</span>
+								<input class="cart_item--input" type="number" value="{{ item.quantity }}" step="{{ min_increment }}" min="{{ min_purchase }}" readonly required>
+								<span class="increment">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+									  <path id="Plus" data-name="Plus_icon" class="plus-icon" d="M1123,310h2v16h-2V310Zm-7,7h16v2h-16v-2Z" transform="translate(-1116 -310)"/>
+									</svg>
+								</span>
+							</div>
+							<a href="/cart/change?line={{ forloop.index }}&quantity=0" class="cart_item--action remove">Remove</a>
+						</div>
+					</div>
+				{% endfor %}
+
+			</div><!-- .cart-items -->
+
+			{% comment %}
+			For the checkout and update buttons to work, they need to use
+			a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
+			{% endcomment %}
+			<div class="cart_footer">
+				<div class="cart_footer__promo">
+					{% if settings.cart_promo_toggle %}
+					
+					<img src="{{ 'cart_promo_img.png' | asset_url }}" alt="{{ settings.cart_promo__heading }}" class="cart_footer__promo--img">
+					<div class="cart_footer__promo--content">
+						<h2>{{ settings.cart_promo_heading }}</h2>
+						<p>{{ settings.cart_promo_copy }}</p>
+						<a href="{{ settings.cart_promo_link }}">{{ settings.cart_promo_link_copy }} ›</a>
+					</div>
+
+					{% endif %}
+				</div>
+				<div class="cart-actions">
+					<h3 class="cart-subtotal">Subtotal <span>{{ cart.total_price | money }}</span></h3>
+					<div class="cart-tac-wrapper">
+						<input type="checkbox" id="agree_to_tac" name=="agree_to_tac" required><label for="agree_to_tac">{{ settings.tac_copy }}</label>
+					</div>
+					<!-- <input type="submit" name="update" value="Update cart"> -->
+					<input class="button--fullwidth" type="submit" name="checkout" value="Check out">
+					<a class="button--fullwidth alt" href="/">Continue shopping</a>
+
+					{% comment %}Paypal and Google checkout buttons{% endcomment %}
+					{% if additional_checkout_buttons %}
+	<!-- 				<p class="additional-checkout-buttons">
+						{{ content_for_additional_checkout_buttons }}
+					</p> -->
+					{% endif %}
+				</div>
+			</div>
+
+
+		</form>
+
+	{% else %}
+	<section class="shopping-cart empty-cart">
+
+		<div class="empty-cart-container">
+			<h2 class="gamma">It appears that your cart is currently empty!</h2>
+			<h3 class="delta">You can continue browsing <a href="/">here</a>.</h3>
+		</div>
+
+	{% endif %}
+	</section>
+</div><!-- .wrap -->
