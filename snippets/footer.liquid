@@ -1,0 +1,38 @@
+<footer class="main-footer">
+
+	<div class="main-footer__wrap">
+
+		{% if linklists.footer.links.size > 0 %}
+		<div class="main-footer__block">
+			<h4 class="block-title">{{ settings.footer_nav_headline | upcase }}</h4>
+			<ul class="footer-nav" role="navigation">
+			{% for link in linklists.footer.links %}
+				<li class="footer-nav__link"><a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
+			{% endfor %}
+			</ul>
+		</div><!-- .footer__block -->
+		{% endif %}
+
+		<div class="main-footer__block">
+			<h4 class="block-title">{{ settings.footer_help_headline | upcase }}</h4>
+			<div class="block-content">{{ settings.footer_help_content | newline_to_br }}</div>
+			{% if settings.footer_help_button_display == true %}
+			<div class="block-content">
+				<a href="{{ settings.footer_help_button_link | url_escape }}" class="button--primary">{{ settings.footer_help_button_text }}</a>
+			</div>
+			{% endif %}
+		</div><!-- .footer__block -->
+
+		<div class="main-footer__block">
+			<h4 class="block-title">{{ settings.footer_contact_headline | upcase }}</h4>
+			<div class="block-content">{{ settings.footer_contact_content | newline_to_br }}</div>
+
+		</div><!-- .footer__block -->
+
+	</div><!-- .main-footer__wrap -->
+
+	<div class="main-footer__info">
+		<p role="contentinfo" class="footer-copyright">&copy; {{ "now" | date: "%Y" }} {{ settings.footer_copyright_text }} <a href="{{ settings.footer_copyright_link | url_escape }}" class="link-style--external">{{ settings.footer_copyright_link_text }}</a></p>
+	</div>
+
+</footer>
