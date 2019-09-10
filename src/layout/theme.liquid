@@ -36,10 +36,10 @@
 
 	{{ '//fonts.googleapis.com/css?family=Ubuntu:400,300' | stylesheet_tag }}
 
+	<link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-2.3.0.min.css" />
+
 	{{ 'canonical.min.css' | asset_url | stylesheet_tag }}
-<!-- 	{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
-	{{ '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' | stylesheet_tag }}
- -->
+	{{ 'style.scss' | asset_url | stylesheet_tag }}
 
 	<!--[if lt IE 9]>
 	{{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
