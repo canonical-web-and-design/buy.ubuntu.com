@@ -1,21 +1,10 @@
-{% comment %}{%  include 'subscription-cart-footer' %} {% endcomment %}
- {% include 'header' %}
+{% include 'header' %}
 
-<div class="wrap--greylighterbkgd">
-
-	{% if cart.item_count > 0 %}
+{% if cart.item_count > 0 %}
 	<section class="shopping-cart">
-
 		<form action="/cart" method="post">
-
 			<div class="cart-items">
-
 				{% for item in cart.items %}
-
-					{% comment %}
-					Determining the handle of the collection that was last seen for the 'continue shopping' link.
-					{% endcomment %}
-
 					{% assign collection_url = item.product.collections.last.url %}
 					{% if collection_url == '/collections/frontpage' or collection_url == blank %}
 						{% assign collection_url = '/collections/all' %}
@@ -57,13 +46,13 @@
 							<div class="cart_item--qty">
 								<span class="decrement">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="2" viewBox="0 0 16 2">
-									  <rect id="Minus" class="minus-icon" width="16" height="2"/>
+										<rect id="Minus" class="minus-icon" width="16" height="2"/>
 									</svg>
 								</span>
 								<input class="cart_item--input" type="number" value="{{ item.quantity }}" step="{{ min_increment }}" min="{{ min_purchase }}" readonly required>
 								<span class="increment">
 									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-									  <path id="Plus" data-name="Plus_icon" class="plus-icon" d="M1123,310h2v16h-2V310Zm-7,7h16v2h-16v-2Z" transform="translate(-1116 -310)"/>
+										<path id="Plus" data-name="Plus_icon" class="plus-icon" d="M1123,310h2v16h-2V310Zm-7,7h16v2h-16v-2Z" transform="translate(-1116 -310)"/>
 									</svg>
 								</span>
 							</div>
@@ -71,13 +60,8 @@
 						</div>
 					</div>
 				{% endfor %}
+			</div>
 
-			</div><!-- .cart-items -->
-
-			{% comment %}
-			For the checkout and update buttons to work, they need to use
-			a name attribute set to 'checkout' and 'update', respectively. That's case-sensitive.
-			{% endcomment %}
 			<div class="cart_footer">
 				<div class="cart_footer__promo">
 					{% if settings.cart_promo_toggle %}
@@ -96,30 +80,10 @@
 					<div class="cart-tac-wrapper">
 						<input type="checkbox" id="agree_to_tac" name=="agree_to_tac" required><label for="agree_to_tac">{{ settings.tac_copy }}</label>
 					</div>
-					<!-- <input type="submit" name="update" value="Update cart"> -->
 					<input class="button--fullwidth" type="submit" name="checkout" value="Check out">
 					<a class="button--fullwidth alt" href="/">Continue shopping</a>
-
-					{% comment %}Paypal and Google checkout buttons{% endcomment %}
-					{% if additional_checkout_buttons %}
-	<!-- 				<p class="additional-checkout-buttons">
-						{{ content_for_additional_checkout_buttons }}
-					</p> -->
-					{% endif %}
 				</div>
 			</div>
-
-
 		</form>
-
-	{% else %}
-	<section class="shopping-cart empty-cart">
-
-		<div class="empty-cart-container">
-			<h2 class="gamma">It appears that your cart is currently empty!</h2>
-			<h3 class="delta">You can continue browsing <a href="/">here</a>.</h3>
-		</div>
-
-	{% endif %}
 	</section>
-</div><!-- .wrap -->
+{% endif %}
