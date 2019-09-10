@@ -1,30 +1,29 @@
 {% if template contains 'index' %}
-	<header class="main-header" style="background-color: {{ settings.homepage_hero_bgcolor }}; color: {{ settings.homepage_hero_textcolor }};">
-
-		<style type="text/css">
-			.main-header::after {
-				background-image: url({{ 'homepage_hero-graph.png' | asset_url }});
-			}
-		</style>
-
+	<header style="background-color: {{ settings.homepage_hero_bgcolor }}; color: {{ settings.homepage_hero_textcolor }};">
 		{% include 'site-nav' %}
 
-		<div class="main-header__wrap">
-			<h1 class="main-heading">{{ settings.homepage_main_heading }}</h1>
-			<p class="main-subheading">{{ settings.homepage_sub_heading }}</p>
-		</div><!-- .main-header__wrap -->
-
-	</header><!-- .main-header -->
-{% elsif template contains 'cart' %}
-	<header class="main-header cart-header" style="background-color: #f1f1f1; color: #fff;">
-
-		{% include 'site-nav' %}
-
-		<div class="main-header__wrap short-header">
-			<div class="main-header__text">
-				<h1 class="main-heading">Shopping Cart</h1>
+		<div class="p-strip is-deep" style="background-image: url({{ 'homepage_hero-graph.png' | asset_url }});">
+			<div class="u-fixed-width">
+				<h1>{{ settings.homepage_main_heading }}</h1>
+				<h2 class="p-heading--four">{{ settings.homepage_sub_heading }}</h4>
 			</div>
-		</div><!-- .main-header__wrap -->
+		</div>
+	</header>
+{% elsif template contains 'cart' %}
+	<header class="cart-header" style="background-color: #f1f1f1;">
+		{% include 'site-nav' %}
+
+		<div class="p-strip--light">
+			<div class="row">
+				<div class="col-12">
+					<h1>Shopping Cart</h1>
+					{% if cart.item_count < 1 %}
+						<h2>It appears that your cart is currently empty!</h2>
+						<h3>You can continue browsing <a href="/">here</a>.</h3>
+					{% endif %}
+				</div>
+			</div>
+		</div>
 	</header>
 
 {% elsif template contains 'collection' %}
