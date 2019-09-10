@@ -39,7 +39,7 @@
 	<link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-2.3.0.min.css" />
 
 	{{ 'canonical.min.css' | asset_url | stylesheet_tag }}
-	{{ 'style.scss' | asset_url | stylesheet_tag }}
+	{{ 'style.css' | asset_url | stylesheet_tag }}
 
 	<!--[if lt IE 9]>
 	{{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
@@ -64,7 +64,7 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-	<div class="main" role="main">
+	<div id="main-content" class="main" role="main">
 		{% comment %}
 		We have a template file to render.
 		That's what content_for_layout is for.
