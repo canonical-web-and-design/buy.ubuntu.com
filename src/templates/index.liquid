@@ -1,250 +1,175 @@
 {% include 'header' %}
-<div class="wrap--darkgreybkgd">
-	<div class="promo">
-    	<p class="promo__content">Ubuntu 12.04 LTS extended security maintenance included.</p>
-	</div>
-</div>
-<div class="wrap--greybkgd">
 
-	<article class="article product-overview">
-
-		<div class="product-overview__description article-text larger">
-			<h3 class="article-headline larger">{{ settings.home_featured_heading }}</h3>
+<section class="p-strip--light">
+	<div class="row">
+		<div class="col-7">
+			<h3>{{ settings.home_featured_heading }}</h3>
 			<p>{{ settings.home_featured_description }}</p>
 			{% unless settings.homepage_page == blank or pages[settings.homepage_page].empty? %}
 			{% assign page = pages[settings.homepage_page] %}
-				<span class="check-list smaller-list">
-				{{ page.content | replace: '<li>**', '<li class="checked">' }}
-				</span>
+				{{ page.content | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li class="p-list__item is-ticked">' }}
+				</ul>
 			{% endunless %}
-		</div><!-- .product-overview__description -->
-
-		<div class="product-overview__product-list">
-
+		</div>
+		<div class="col-5">
 			{% if settings.home_featured_collection_one %}
 			{% assign collect_one = collections[settings.home_featured_collection_one] %}
-			<a href="{{ collect_one.url }}" class="box--small">
-				<span class="box--small__icon">
-					<img src="{{ 'icon-collection-1.png' | asset_url }}" alt="{{ collect_one.title }}">
-				</span>
-				<span class="box--small__text">
-					<h4 class="box-heading">{{ collect_one.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-					<h5 class="box-subheading"><span class="price">
-					{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
-					{% unless settings.home_featured_collection_one_desc == blank or settings.home_featured_collection_one_desc.empty? %}
-					<h6 class="box-description">{{ settings.home_featured_collection_one_desc }}</h6>
-					{% endunless %}
-				</span>
-			</a><!-- .box-shadow -->
+			<div class="p-card--highlighted">
+				<a href="{{ collect_one.url }}" class="row u-equal-height u-vertically-center">
+					<div class="col-2 col-small-1 col-medium-2">
+						<img src="{{ 'icon-collection-1.png' | asset_url }}" alt="{{ collect_one.title }}">
+					</div>
+					<div class="col-3 col-small-3 col-medium-3">
+						<h4 class="box-heading">{{ collect_one.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
+										<h5 class="box-subheading"><span class="price">
+						{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+						{% unless settings.home_featured_collection_one_desc == blank or settings.home_featured_collection_one_desc.empty? %}
+						<h6 class="box-description">{{ settings.home_featured_collection_one_desc }}</h6>
+						{% endunless %}
+					</div>
+				</a>
+			</div>
 			{% endif %}
 
 			{% if settings.home_featured_collection_two %}
 			{% assign collect_two = collections[settings.home_featured_collection_two] %}
-			<a href="{{ collect_two.url }}" class="box--small">
-				<span class="box--small__icon">
-					<img src="{{ 'icon-collection-2.png' | asset_url }}" alt="{{ collect_two.title }}">
-				</span>
-				<span class="box--small__text">
-					<h4 class="box-heading">{{ collect_two.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-					<h5 class="box-subheading"><span class="price">
-					{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
-					{% unless settings.home_featured_collection_two_desc == blank or settings.home_featured_collection_two_desc.empty? %}
-					<h6 class="box-description">{{ settings.home_featured_collection_two_desc }}</h6>
-					{% endunless %}
-				</span>
-			</a><!-- .box-shadow -->
+			<div class="p-card--highlighted">
+				<a href="{{ collect_two.url }}" class="row u-equal-height u-vertically-center">
+					<div class="col-2 col-small-1 col-medium-2">
+						<img src="{{ 'icon-collection-2.png' | asset_url }}" alt="{{ collect_two.title }}">
+					</div>
+					<div class="col-3 col-small-3 col-medium-3">
+						<h4 class="box-heading">{{ collect_two.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
+						<h5 class="box-subheading"><span class="price">
+						{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+						{% unless settings.home_featured_collection_two_desc == blank or settings.home_featured_collection_two_desc.empty? %}
+						<h6 class="box-description">{{ settings.home_featured_collection_two_desc }}</h6>
+						{% endunless %}
+					</div>
+				</a>
+			</div>
 			{% endif %}
 
 			{% if settings.home_featured_collection_three %}
 			{% assign collect_three = collections[settings.home_featured_collection_three] %}
-			<a href="{{ collect_three.url }}" class="box--small">
-				<span class="box--small__icon">
-					<img src="{{ 'icon-collection-3.png' | asset_url }}" alt="{{ collect_three.title }}">
-				</span>
-				<span class="box--small__text">
-					<h4 class="box-heading">{{ collect_three.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-					<h5 class="box-subheading"><span class="price">
-					{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
-					{% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
-					<h6 class="box-description">{{ settings.home_featured_collection_three_desc }}</h6>
-					{% endunless %}
-				</span>
-			</a><!-- .box-shadow -->
+			<div class="p-card--highlighted">
+				<a href="{{ collect_three.url }}" class="row u-equal-height u-vertically-center">
+					<div class="col-2 col-small-1 col-medium-2">
+						<img src="{{ 'icon-collection-3.png' | asset_url }}" alt="{{ collect_three.title }}">
+					</div>
+					<div class="col-3 col-small-3 col-medium-3">
+						<h4 class="box-heading">{{ collect_three.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
+						<h5 class="box-subheading"><span class="price">
+						{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+						{% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
+						<h6 class="box-description">{{ settings.home_featured_collection_three_desc }}</h6>
+						{% endunless %}
+					</div>
+				</a>
+			</div>
 			{% endif %}
-
-		</div><!-- .product-overview__product-list -->
-
-	</article><!-- .product-overview -->
-
-</div><!-- .wrap--greybkgd -->
+		</div>
+	</div>
+</section>
 
 
 {% unless settings.home_includes_toggle == false %}
-<div class="wrap--purplebkgd">
+	<section class="p-strip">
+		<div class="row">
+			<div class="col-8">
+				<h3>{{ settings.home_includes_heading }}</h3>
 
-	<article class="article article-base">
-
-		<h3 class="article-headline">{{ settings.home_includes_heading }}</h3>
-
-		<div class="multi-column-list list-headlines">
-			{{ settings.home_includes_copy }}
-		</div><!-- .multi-column -->
-
-	</article><!-- .article -->
-
-</div><!-- .wrap -->
+				{{ settings.home_includes_copy | replace: '<ul>', '<ul class="p-list">' | replace: '<li>', '<li class="p-list__item is-ticked">' }}
+			</div>
+		</div>
+	</section>
 {% endunless %}
 
 
-<div class="wrap--darkgreybkgd">
+<section class="p-strip">
+	<div class="u-fixed-width">
+		<h2 class="p-muted-heading u-align--center" style="max-width: none;">{{ settings.home_customers_heading }}</h2>
+		<ul class="p-inline-images">
 
-	<article class="article feature-screen image-flush-right">
-
-		<style type="text/css">
-			.image-flush-right::before {
-				background-image: url({{ 'web-ui-landscape.gif' | asset_url }});
-			}
-		</style>
-
-		<div class="feature-screen__text article-text">
-			<h3 class="article-headline">{{ settings.home_landscape_heading }}</h3>
-			<p>{{ settings.home_landscape_description }}</p>
-			{% if settings.home_landscape_list %}
-			{% assign land_lists = settings.home_landscape_list | split: '| ' %}
-			<ul class="multi-column">
-				{% for listitem in land_lists %}
-				<li>{{ listitem }}</li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			<p><a href="{{ settings.home_landscape_link | url_param_escape }}"{% if settings.home_landscape_link_arrow == true %} class="link-style--arrow"{% endif %}>{{ settings.home_landscape_link_text }}</a></p>
-		</div><!-- .feature-screen__text -->
-
-	</article><!-- .feature-screen -->
-
-
-	<article class="article vertical-cols">
-
-		<div class="column third article-text">
-			<h4 class="article-subhead">{{ settings.home_left_column_heading }}</h4>
-			<p>{{ settings.home_left_column_description }}</p>
-		</div>
-
-		<div class="column third article-text">
-			<h4 class="article-subhead">{{ settings.home_mid_column_heading }}</h4>
-			<p>{{ settings.home_mid_column_description }}</p>
-		</div>
-
-		<div class="column third article-text">
-			<h4 class="article-subhead">{{ settings.home_right_column_heading }}</h4>
-			<p>{{ settings.home_right_column_description }}</p>
-		</div>
-
-	</article><!-- .vertical-cols -->
-
-
-</div><!-- .wrap--darkgreybkgd -->
-
-
-<article class="article article-base">
-
-	<div class="article-text">
-		<h3 class="article-headline" style="justify-content: center !important; text-align: center !important;">{{ settings.home_customers_heading }}</h3>
-	</div>
-
-	<div class="article-grid">
-
-		<div class="grid-row">
-
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_one == true %}
 				<a href="{{ settings.link_customer_one_url | url_escape }}"><img src="{{ 'logo-bloomberg.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-bloomberg.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_two == true %}
 				<a href="{{ settings.link_customer_two_url | url_escape }}"><img src="{{ 'logo-att.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-att.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_three == true %}
 				<a href="{{ settings.link_customer_three_url | url_escape }}"><img src="{{ 'logo-walmart.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-walmart.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_four == true %}
 				<a href="{{ settings.link_customer_four_url | url_escape }}"><img src="{{ 'logo-tmobile.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-tmobile.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-		</div><!-- .grid-row -->
-
-		<div class="grid-row">
-
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_five == true %}
 				<a href="{{ settings.link_customer_five_url | url_escape }}"><img src="{{ 'logo-ebay.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-ebay.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_six == true %}
 				<a href="{{ settings.link_customer_six_url | url_escape }}"><img src="{{ 'logo-cisco.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-cisco.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_seven == true %}
 				<a href="{{ settings.link_customer_seven_url | url_escape }}"><img src="{{ 'logo-ntt.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-ntt.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-			<div class="article-grid__block">
+			<li class="p-inline-images__item">
 			{% if settings.link_customer_eight == true %}
 				<a href="{{ settings.link_customer_eight_url | url_escape }}"><img src="{{ 'logo-bestbuy.png' | asset_url }}"></a>
 			{% else %}
 				<img src="{{ 'logo-bestbuy.png' | asset_url }}">
 			{% endif %}
-			</div><!-- .article-grid__block -->
+			</li>
 
-		</div><!-- .grid-row -->
-
-	</div><!-- .article-grid__images -->
-
-</article><!-- .article -->
+		</ul>
+	</div>
+</section>
 
 
-<div class="wrap--purplebkgd">
-
-	<article class="article feature-screen image-right">
-
-		<div class="feature-screen__text article-text">
-			<h3 class="article-headline">{{ settings.home_canonical_heading }}{% if settings.home_canonical_heading_img == true %} <img src="{{ 'canonical-logo.png' | asset_url }}" alt="Canonical">{% endif %}</h3>
+<section class="p-strip--dark" style="background-color: #2c001e;">
+	<div class="row u-vertically-center">
+		<div class="col-8">
+			<h2>{{ settings.home_canonical_heading }}{% if settings.home_canonical_heading_img == true %} <img src="{{ 'canonical-logo.png' | asset_url }}" alt="Canonical">{% endif %}</h2>
 			<p>{{ settings.home_canonical_description }}</p>
-			<p><a href="{{ settings.home_canonical_link | url_param_escape }}"{% if settings.home_canonical_link_arrow == true %} class="link-style--arrow"{% endif %}>{{ settings.home_canonical_link_text }}</a></p>
-		</div><!-- .feature-screen__text -->
+			<p><a href="{{ settings.home_canonical_link | url_param_escape }}" class="p-link--external p-link--inverted">{{ settings.home_canonical_link_text }}</a></p>
+		</div>
 
-		<div class="feature-screen__image">
+		<div class="col-4">
 			<img src="{{ 'canonical-image.png' | asset_url }}" alt="Canonical image">
-		</div><!-- .feature-screen__image -->
-
-	</article><!-- .feature-screen -->
-
-</div><!-- .wrap--purplebkgd -->
+		</div>
+	</div>
+</section>
