@@ -2,7 +2,7 @@
 
 <div id="main-content" class="main" role="main">
 	{% include 'header' %}
-	
+
 	<section class="p-strip--light">
 		<div class="row">
 			<div class="col-7">
@@ -23,11 +23,10 @@
 							<img src="{{ 'icon-collection-1.png' | asset_url }}" alt="{{ collect_one.title }}">
 						</div>
 						<div class="col-3 col-small-3 col-medium-3">
-							<h4 class="box-heading">{{ collect_one.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-											<h5 class="box-subheading"><span class="price">
-							{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+							<h4>{{ collect_one.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+							<h5>{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
 							{% unless settings.home_featured_collection_one_desc == blank or settings.home_featured_collection_one_desc.empty? %}
-							<h6 class="box-description">{{ settings.home_featured_collection_one_desc }}</h6>
+							<h6>{{ settings.home_featured_collection_one_desc }}</h6>
 							{% endunless %}
 						</div>
 					</a>
@@ -42,11 +41,10 @@
 							<img src="{{ 'icon-collection-2.png' | asset_url }}" alt="{{ collect_two.title }}">
 						</div>
 						<div class="col-3 col-small-3 col-medium-3">
-							<h4 class="box-heading">{{ collect_two.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-							<h5 class="box-subheading"><span class="price">
-							{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+							<h4>{{ collect_two.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+							<h5>{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
 							{% unless settings.home_featured_collection_two_desc == blank or settings.home_featured_collection_two_desc.empty? %}
-							<h6 class="box-description">{{ settings.home_featured_collection_two_desc }}</h6>
+							<h6>{{ settings.home_featured_collection_two_desc }}</h6>
 							{% endunless %}
 						</div>
 					</a>
@@ -61,11 +59,10 @@
 							<img src="{{ 'icon-collection-3.png' | asset_url }}" alt="{{ collect_three.title }}">
 						</div>
 						<div class="col-3 col-small-3 col-medium-3">
-							<h4 class="box-heading">{{ collect_three.metafields.c_f['[c]Homepage title'] }} <span class="arrow">&rsaquo;</span></h4>
-							<h5 class="box-subheading"><span class="price">
-							{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+							<h4>{{ collect_three.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+							<h5>{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
 							{% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
-							<h6 class="box-description">{{ settings.home_featured_collection_three_desc }}</h6>
+							<h6>{{ settings.home_featured_collection_three_desc }}</h6>
 							{% endunless %}
 						</div>
 					</a>
