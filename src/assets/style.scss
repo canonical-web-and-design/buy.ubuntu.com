@@ -1,7 +1,41 @@
 .p-navigation {
   background-color: #333;
 
-  a { 
-    color: #fff;
+  &::after {
+    background: transparent;
+  }
+
+  .p-navigation__logo > a,
+  .p-navigation__link > a,
+  .p-navigation__toggle--close,
+  .p-navigation__toggle--open {
+    &,
+    &:visited,
+    &:focus {
+      color: hsl(0, 0%, 100%);
+    }
+  }
+
+  .p-navigation__link > a {
+    &::before {
+      background: transparent;
+    }
+    
+    &:hover {
+      background: #2b2b2b;
+    }
+  }
+
+  &__link--cart {
+    order: 1;
+    padding: 0.5rem 1.5rem 0;
+
+    @media (max-width: 772px) {
+      padding: .75rem 1.5rem;
+    }
+
+    &:hover {
+      background: #2b2b2b;
+    }
   }
 }
