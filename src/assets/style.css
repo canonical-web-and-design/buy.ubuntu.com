@@ -16,6 +16,16 @@
 .p-navigation .p-navigation__toggle--open:focus {
   color: white; }
 
+.p-navigation .p-navigation__link > a,
+.p-navigation .p-navigation__toggle--close,
+.p-navigation .p-navigation__toggle--open {
+  padding-top: 0.95rem; }
+
+.p-navigation .p-navigation__logo span {
+  align-self: flex-end;
+  margin-left: 0.5rem;
+  padding-bottom: 0.15rem; }
+
 .p-navigation .p-navigation__link > a::before {
   background: transparent; }
 
