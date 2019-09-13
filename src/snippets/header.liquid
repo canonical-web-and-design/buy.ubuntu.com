@@ -1,74 +1,73 @@
-{% if template contains 'index' %}
-	<header class="main-header" style="background-color: {{ settings.homepage_hero_bgcolor }}; color: {{ settings.homepage_hero_textcolor }};">
-
-		<style type="text/css">
-			.main-header::after {
-				background-image: url({{ 'homepage_hero-graph.png' | asset_url }});
-			}
-		</style>
-
-		{% include 'site-nav' %}
-
-		<div class="main-header__wrap">
-			<h1 class="main-heading">{{ settings.homepage_main_heading }}</h1>
-			<p class="main-subheading">{{ settings.homepage_sub_heading }}</p>
-		</div><!-- .main-header__wrap -->
-
-	</header><!-- .main-header -->
+{% if template contains 'index' %}	
+  <section style="background-color: {{ settings.homepage_hero_bgcolor }}; color: {{ settings.homepage_hero_textcolor }};">
+    <div class="p-strip is-deep" style="background-image: url({{ 'homepage_hero-graph.png' | asset_url }});">
+      <div class="u-fixed-width">
+        <h1>{{ settings.homepage_main_heading }}</h1>
+        <h2 class="p-heading--four">{{ settings.homepage_sub_heading }}</h4>
+        <a class="p-button--positive" href="/collections/ubuntu-advantage-for-infrastructure-essential">Get started with our Essential plan from $25</a>
+        <p><a class="p-link--inverted p-link--external" href="https://ubuntu.com/support" title="Get UA Infrastructure Essential" target="blank">Learn more about our support options</a></p>
+      </div>
+    </div>
+  </section>
 {% elsif template contains 'cart' %}
-	<header class="main-header cart-header" style="background-color: #f1f1f1; color: #fff;">
+  <header class="cart-header" style="background-color: #f1f1f1;">
+    {% include 'site-nav' %}
 
-		{% include 'site-nav' %}
-
-		<div class="main-header__wrap short-header">
-			<div class="main-header__text">
-				<h1 class="main-heading">Shopping Cart</h1>
-			</div>
-		</div><!-- .main-header__wrap -->
-	</header>
+    <div class="p-strip--light">
+      <div class="row">
+        <div class="col-12">
+          <h1>Shopping Cart</h1>
+          {% if cart.item_count < 1 %}
+            <h2>It appears that your cart is currently empty!</h2>
+            <h3>You can continue browsing <a href="/">here</a>.</h3>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </header>
 
 {% elsif template contains 'collection' %}
 <div style="display: none;">{{ collection.handle }}</div>
 
-	{% if collection.handle == settings.collection_one_hero %}
-		{% assign bgcolor = settings.collection_one_hero_bgcolor %}
-		{% assign txcolor = settings.collection_one_hero_textcolor %}
-	{% elsif collection.handle == settings.collection_two_hero %}
-		{% assign bgcolor = settings.collection_two_hero_bgcolor %}
-		{% assign txcolor = settings.collection_two_hero_textcolor %}
-	{% elsif collection.handle  == settings.collection_three_hero %}
-		{% assign bgcolor = settings.collection_three_hero_bgcolor %}
-		{% assign txcolor = settings.collection_three_hero_textcolor %}
-	{% else %}
-		{% assign bgcolor = settings.collection_hero_bgcolor %}
-		{% assign txcolor = settings.collection_hero_textcolor %}
-	{% endif %}
+  {% if collection.handle == settings.collection_one_hero %}
+    {% assign bgcolor = settings.collection_one_hero_bgcolor %}
+    {% assign txcolor = settings.collection_one_hero_textcolor %}
+  {% elsif collection.handle == settings.collection_two_hero %}
+    {% assign bgcolor = settings.collection_two_hero_bgcolor %}
+    {% assign txcolor = settings.collection_two_hero_textcolor %}
+  {% elsif collection.handle  == settings.collection_three_hero %}
+    {% assign bgcolor = settings.collection_three_hero_bgcolor %}
+    {% assign txcolor = settings.collection_three_hero_textcolor %}
+  {% else %}
+    {% assign bgcolor = settings.collection_hero_bgcolor %}
+    {% assign txcolor = settings.collection_hero_textcolor %}
+  {% endif %}
 
-	<header class="main-header" style="background-color: {{ bgcolor }}; color: {{ txcolor }};">
+  <header class="main-header" style="background-color: {{ bgcolor }}; color: {{ txcolor }};">
 
-		{% include 'site-nav' %}
+    {% include 'site-nav' %}
 
-		{% if template contains 'collection' %}
-		<div class="main-header__wrap">
-			{% unless collection.image == blank or collection.image.empty? %}
-			<div class="main-header__productimage">
-				<img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}">
-			</div>
-			{% endunless %}
-			<div class="main-header__text">
-				<h1 class="main-heading">{{ collection.title }}</h1>
-				{% unless collection.description == blank or collection.description.empty? %}
-				<p class="main-subheading">{{ collection.metafields.c_f['[c][_t]Collection Subheading'] }}</p>
-				{% endunless %}
-			</div>
-		</div><!-- .main-header__wrap -->
-		{% else %}
-		<div class="main-header__wrap short-header">
-			<div class="main-header__text">
-				<h1 class="main-heading">{{ template }}</h1>
-			</div>
-		</div><!-- .main-header__wrap -->
-		{% endif %}
+    {% if template contains 'collection' %}
+    <div class="main-header__wrap">
+      {% unless collection.image == blank or collection.image.empty? %}
+      <div class="main-header__productimage">
+        <img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}">
+      </div>
+      {% endunless %}
+      <div class="main-header__text">
+        <h1 class="main-heading">{{ collection.title }}</h1>
+        {% unless collection.description == blank or collection.description.empty? %}
+        <p class="main-subheading">{{ collection.metafields.c_f['[c][_t]Collection Subheading'] }}</p>
+        {% endunless %}
+      </div>
+    </div><!-- .main-header__wrap -->
+    {% else %}
+    <div class="main-header__wrap short-header">
+      <div class="main-header__text">
+        <h1 class="main-heading">{{ template }}</h1>
+      </div>
+    </div><!-- .main-header__wrap -->
+    {% endif %}
 
-	</header><!-- .main-header -->
+  </header><!-- .main-header -->
 {% endif %}

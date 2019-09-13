@@ -6,57 +6,56 @@
 <!--[if IE 9 ]><html class="ie9 no-js"> <![endif]-->
 <!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js"> <!--<![endif]-->
 <head>
-	<meta charset="utf-8" />
-	<!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
+  <meta charset="utf-8" />
+  <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1' /><![endif]-->
 
-	<title>
-	{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
-	</title>
+  <title>
+  {{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
 
-	{% if page_description %}
-	<meta name="description" content="{{ page_description | escape }}" />
-	{% endif %}
+  {% if page_description %}
+  <meta name="description" content="{{ page_description | escape }}" />
+  {% endif %}
 
-	<link rel="canonical" href="{{ canonical_url }}" />
+  <link rel="canonical" href="{{ canonical_url }}" />
 
-	<link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16" />
-	<link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/cb22ba5d-favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="https://assets.ubuntu.com/v1/49a1a858-favicon-32x32.png" sizes="32x32" />
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
-	<link rel="apple-touch-icon-precomposed" href="https://assets.ubuntu.com/v1/cc66da65-apple-touch-icon-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://assets.ubuntu.com/v1/3361409d-apple-touch-icon-144x144-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://assets.ubuntu.com/v1/5fe4d3c8-apple-touch-icon-114x114-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://assets.ubuntu.com/v1/09460d9a-apple-touch-icon-72x72-precomposed.png" />
+  <link rel="apple-touch-icon-precomposed" href="https://assets.ubuntu.com/v1/cc66da65-apple-touch-icon-precomposed.png" />
 
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-	{% include 'open-graph-tags' %}
-	{% include 'twitter-card' %}
+  {% include 'open-graph-tags' %}
+  {% include 'twitter-card' %}
 
-	{{ content_for_header }}
+  {{ content_for_header }}
 
-	{{ '//fonts.googleapis.com/css?family=Ubuntu:400,300' | stylesheet_tag }}
+  {{ '//fonts.googleapis.com/css?family=Ubuntu:400,300' | stylesheet_tag }}
 
-	{{ 'canonical.min.css' | asset_url | stylesheet_tag }}
-<!-- 	{{ 'social/social-icons.css' | global_asset_url | stylesheet_tag }}
-	{{ '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css' | stylesheet_tag }}
- -->
+  <link rel="stylesheet" href="https://assets.ubuntu.com/v1/vanilla-framework-version-2.3.0.min.css" />
 
-	<!--[if lt IE 9]>
-	{{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
-	<![endif]-->
+  {{ 'style.css' | asset_url | stylesheet_tag }}
 
-	{{ 'shopify_common.js' | shopify_asset_url | script_tag }}
-	{% if template contains 'customers' %}
-	{{ 'customer_area.js'  | shopify_asset_url | script_tag }}
-	{% endif %}
+  <!--[if lt IE 9]>
+  {{ '//html5shiv.googlecode.com/svn/trunk/html5.js' | script_tag }}
+  <![endif]-->
 
-	<!-- Additional Shopify helpers that will likely be added to the global shopify_common.js some day soon. -->
-	{{ 'shopify_common.js'  | asset_url | script_tag }}
+  {{ 'shopify_common.js' | shopify_asset_url | script_tag }}
+  {% if template contains 'customers' %}
+  {{ 'customer_area.js'  | shopify_asset_url | script_tag }}
+  {% endif %}
 
-	{{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  <!-- Additional Shopify helpers that will likely be added to the global shopify_common.js some day soon. -->
+  {{ 'shopify_common.js'  | asset_url | script_tag }}
 
-	{{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
-	<script>jQuery('html').removeClass('no-js').addClass('js');</script>
+  {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+
+  {{ '//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js' | script_tag }}
+  <script>jQuery('html').removeClass('no-js').addClass('js');</script>
 
 
 {% include "livechat_monitoring_code" %}
@@ -64,27 +63,18 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-	<div class="main" role="main">
-		{% comment %}
-		We have a template file to render.
-		That's what content_for_layout is for.
-		{% endcomment %}
-		{{ content_for_layout }}
-	</div>
+  {{ content_for_layout }}
 
-	{% include 'footer' %}
+  {% include 'footer' %}
 
-	{% comment %}Shopify does not support Internet Explorer 6 nor 7. It does encourage themes to support IE8 until the end of 2014.{% endcomment %}
-	<!--[if lt IE 8]>
-	<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-	<![endif]-->
+  {% comment %}Shopify does not support Internet Explorer 6 nor 7. It does encourage themes to support IE8 until the end of 2014.{% endcomment %}
+  <!--[if lt IE 8]>
+  <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+  <![endif]-->
 
 
-	<!-- {{ 'shop.js' | asset_url | script_tag }} -->
+  <!-- {{ 'shop.js' | asset_url | script_tag }} -->
 
-	{{ 'canonical.min.js'  | asset_url | script_tag }}
-
-            
-{% comment %}{% include 'subscription-theme-footer' %}{% endcomment %}
+  {{ 'canonical.min.js'  | asset_url | script_tag }}
 </body>
 </html>

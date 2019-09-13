@@ -19,3 +19,4 @@ development:
 ```
 
 - Run `npm install`, followed by `npm run start:dev`
+- If you're updating SCSS, you'll need to run `npm run watch-scss` in a separate terminal.
