@@ -72,7 +72,7 @@
     "tac_copy": "I confirm acceptance to the terms of the <a href=\"http://www.ubuntu.com/legal/short-terms\" target=\"_blank\">services agreement</a> for and on behalf of the company identified in the order.",
     "footer_nav_headline": "More on Commercial Support",
     "footer_help_headline": "Community Support",
-    "footer_help_content": "If you just need support for yourself, you can get help from the <a href=\"https://ubuntu.com/support/community-support\"target=\"_blank\">community</a>, join a <a href=\"http://ubuntuforums.org/\"target=\"_blank\">forum</a>, or take a look at our <a href=\"https://help.ubuntu.com/?_ga=1.231772636.2119600767.1461864987\"target=\"_blank\">official documentation</a>.\n\n<a href=\"https://ubuntu.com/support/community-support\">Learn about community support  ›</a>",
+    "footer_help_content": "If you just need support for yourself, you can get help from the <a href=\"https://ubuntu.com/support/community-support\"target=\"_blank\">community</a>, join a <a href=\"http://ubuntuforums.org/\"target=\"_blank\">forum</a>, or take a look at our <a href=\"https://help.ubuntu.com/?_ga=1.231772636.2119600767.1461864987\"target=\"_blank\">official documentation</a>.\n\n<a href=\"https://ubuntu.com/support/community-support\">Learn about community support  ›</a><br /><br />",
     "footer_help_button_display": false,
     "footer_help_button_text": "Contact Us",
     "footer_help_button_link": "http://www.ubuntu.com/about/contact-us/form",

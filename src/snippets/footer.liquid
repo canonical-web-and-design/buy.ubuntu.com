@@ -2,7 +2,7 @@
   <div class="p-strip is-shallow is-bordered">
     <div class="row">
       {% if linklists.footer.links.size > 0 %}
-      <div class="col-2">
+      <div class="col-3">
         <h4 class="p-muted-heading">{{ settings.footer_nav_headline | upcase }}</h4>
         <ul class="p-list" role="navigation">
         {% for link in linklists.footer.links %}
@@ -22,7 +22,7 @@
         {% endif %}
       </div>
 
-      <div class="col-5">
+      <div class="col-4">
         <h4 class="p-muted-heading">{{ settings.footer_contact_headline | upcase }}</h4>
         <div>{{ settings.footer_contact_content | newline_to_br }}</div>
       </div>
