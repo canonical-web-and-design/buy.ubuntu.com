@@ -4,32 +4,14 @@
 	{% include 'header' %}
 
 	<section class="p-strip is-bordered">
-		<div class="row">
+		<div class="row u-equal-height">
 			{% for product in collection.products %}
-				<div class="col-4">
-					<div class="p-card--highlighted">
-						<h2>{{ product.title }}</h2>
-						<h3>{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
-						{% if product.available %}
-							{% if product.variants.size > 1 %}
-								{% for variant in product.variants %}
-									{% assign min_purchase = '1'  %}
-									
-									{% for tag in product.tags %}
-										{% if tag contains 'min-purchase' %}
-											{% assign min_purchase = tag | remove: 'min-purchase-' %}
-										{% endif %}
-									{% endfor %}
-									
-									<form action="/cart/add" method="post">
-										<div class="product-action {% cycle 'left', 'right' %}">
-											<input type="hidden" name="id" value="{{ variant.id }}">
-											<input type="hidden" name="quantity" value="{{ min_purchase }}">
-											<button type="submit" class="p-button--positive">Add to Cart</button>
-										</div>
-									</form>
-								{% endfor %}
-							{% else %}
+				<div class="col-4 p-card--highlighted">
+					<h2>{{ product.title }}</h2>
+					<h3>{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
+					{% if product.available %}
+						{% if product.variants.size > 1 %}
+							{% for variant in product.variants %}
 								{% assign min_purchase = '1'  %}
 								
 								{% for tag in product.tags %}
@@ -37,23 +19,41 @@
 										{% assign min_purchase = tag | remove: 'min-purchase-' %}
 									{% endif %}
 								{% endfor %}
+								
 								<form action="/cart/add" method="post">
-									<div class="product-action">
-										<input type="hidden" name="id" value="{{ product.variants.first.id }}">
+									<div class="product-action {% cycle 'left', 'right' %}">
+										<input type="hidden" name="id" value="{{ variant.id }}">
 										<input type="hidden" name="quantity" value="{{ min_purchase }}">
 										<button type="submit" class="p-button--positive">Add to Cart</button>
 									</div>
 								</form>
-							{% endif %}
+							{% endfor %}
+						{% else %}
+							{% assign min_purchase = '1'  %}
+							
+							{% for tag in product.tags %}
+								{% if tag contains 'min-purchase' %}
+									{% assign min_purchase = tag | remove: 'min-purchase-' %}
+								{% endif %}
+							{% endfor %}
+							<form action="/cart/add" method="post">
+								<div class="product-action">
+									<input type="hidden" name="id" value="{{ product.variants.first.id }}">
+									<input type="hidden" name="quantity" value="{{ min_purchase }}">
+									<button type="submit" class="p-button--positive">Add to Cart</button>
+								</div>
+							</form>
 						{% endif %}
-						<p>{{ product.metafields.c_f['[p][_t]General Description'] }}</p>
+					{% endif %}
+					<p>{{ product.metafields.c_f['[p][_t]General Description'] }}</p>
 
-						{{ product.description | replace: '<ul>', '<ul class="p-list">' |replace: '<li>', '<li class="p-list__item is-ticked">' }}
-					</div>
+					{{ product.description | replace: '<ul>', '<ul class="p-list">' |replace: '<li>', '<li class="p-list__item is-ticked">' }}
 				</div>
 			{% else %}
-				<div class="u-fixed-width">
-					<p>There are no products in this view.</p>
+				<div class="row">
+					<div class="col-12">
+						<p>There are no products in this view.</p>
+					</div>
 				</div>
 			{% endfor %}
 		</div>
