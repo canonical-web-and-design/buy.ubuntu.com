@@ -24,7 +24,7 @@
 									<div class="product-action {% cycle 'left', 'right' %}">
 										<input type="hidden" name="id" value="{{ variant.id }}">
 										<input type="hidden" name="quantity" value="{{ min_purchase }}">
-										<button type="submit" class="p-button--positive">Add to Cart</button>
+										<button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
 									</div>
 								</form>
 							{% endfor %}
@@ -40,14 +40,14 @@
 								<div class="product-action">
 									<input type="hidden" name="id" value="{{ product.variants.first.id }}">
 									<input type="hidden" name="quantity" value="{{ min_purchase }}">
-									<button type="submit" class="p-button--positive">Add to Cart</button>
+									<button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
+									<span class="p-button__postscript">{{ product.metafields.global.CTApostscript | replace: '<p>', '' | replace: '</p>', ''}}</span>
 								</div>
 							</form>
 						{% endif %}
 					{% endif %}
-					<p>{{ product.metafields.c_f['[p][_t]General Description'] }}</p>
 
-					{{ product.description | replace: '<ul>', '<ul class="p-list">' |replace: '<li>', '<li class="p-list__item is-ticked">' }}
+					{{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item is-ticked">'  }}
 				</div>
 			{% else %}
 				<div class="row">

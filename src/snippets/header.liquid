@@ -50,12 +50,12 @@
           <h1>{{ collection.title }}</h1>
           
           {% unless collection.description == blank or collection.description.empty? %}
-            <p class="p-heading--four">{{ collection.metafields.c_f['[c][_t]Collection Subheading'] }}</p>
+            <p class="p-heading--four">{{ collection.description }}</p>
           {% endunless %}
         </div>
 
         {% unless collection.image == blank or collection.image.empty? %}
-          <div class="col-start-large-10 col-3">
+          <div class="col-start-large-10 col-3 u-hide--small">
             <img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}" />
           </div>
         {% endunless %}
