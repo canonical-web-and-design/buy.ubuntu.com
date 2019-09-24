@@ -1,9 +1,23 @@
 {% include 'site-nav' %}
 
 <div id="main-content" class="main" role="main">
+	{% if collection.handle == settings.collection_one_hero %}
+    {% assign bgcolor = settings.collection_one_hero_bgcolor %}
+    {% assign txcolor = settings.collection_one_hero_textcolor %}
+  {% elsif collection.handle == settings.collection_two_hero %}
+    {% assign bgcolor = settings.collection_two_hero_bgcolor %}
+    {% assign txcolor = settings.collection_two_hero_textcolor %}
+  {% elsif collection.handle  == settings.collection_three_hero %}
+    {% assign bgcolor = settings.collection_three_hero_bgcolor %}
+    {% assign txcolor = settings.collection_three_hero_textcolor %}
+  {% else %}
+    {% assign bgcolor = settings.collection_hero_bgcolor %}
+    {% assign txcolor = settings.collection_hero_textcolor %}
+  {% endif %}
+
 	{% include 'header' %}
 
-	<section class="p-strip is-bordered">
+	<section class="p-strip is-shallow is-bordered" style="background-color: {{ bgcolor }};">
 		<div class="row u-equal-height">
 			{% for product in collection.products %}
 				<div class="col-4 p-card--highlighted">
@@ -41,13 +55,13 @@
 									<input type="hidden" name="id" value="{{ product.variants.first.id }}">
 									<input type="hidden" name="quantity" value="{{ min_purchase }}">
 									<button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
-									<span class="p-button__postscript">{{ product.metafields.global.CTApostscript | replace: '<p>', '' | replace: '</p>', ''}}</span>
+									{{ product.metafields.global.CTApostscript }}
 								</div>
 							</form>
 						{% endif %}
 					{% endif %}
 
-					{{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item is-ticked">'  }}
+					{{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item is-ticked" style="min-height: 4rem;">'  }}
 				</div>
 			{% else %}
 				<div class="row">
