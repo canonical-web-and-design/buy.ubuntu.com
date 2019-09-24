@@ -17,6 +17,12 @@
   }
 }
 
+.p-list__item--tall {
+  @media (min-width: 772px) {
+    min-height: 4rem;
+  }
+}
+
 .p-navigation {
   background-color: #333;
 
@@ -68,6 +74,12 @@
     &:hover {
       background: #2b2b2b;
     }
+  }
+}
+
+.p-product-description {
+  @media (min-width: 772px) {
+    min-height: 5rem;
   }
 }
 
