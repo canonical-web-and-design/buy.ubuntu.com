@@ -35,11 +35,9 @@
                 {% endfor %}
                 
                 <form action="/cart/add" method="post">
-                  <div class="product-action {% cycle 'left', 'right' %}">
-                    <input type="hidden" name="id" value="{{ variant.id }}">
-                    <input type="hidden" name="quantity" value="{{ min_purchase }}">
-                    <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
-                  </div>
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="{{ min_purchase }}">
+                  <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
                 </form>
               {% endfor %}
             {% else %}
@@ -51,12 +49,10 @@
                 {% endif %}
               {% endfor %}
               <form action="/cart/add" method="post">
-                <div class="product-action">
-                  <input type="hidden" name="id" value="{{ product.variants.first.id }}">
-                  <input type="hidden" name="quantity" value="{{ min_purchase }}">
-                  <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
-                  {{ product.metafields.global.CTApostscript }}
-                </div>
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <input type="hidden" name="quantity" value="{{ min_purchase }}">
+                <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
+                {{ product.metafields.global.CTApostscript }}
               </form>
             {% endif %}
           {% endif %}
