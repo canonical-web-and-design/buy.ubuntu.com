@@ -1,88 +1,71 @@
-{% include 'header' %}
+{% include 'site-nav' %}
 
-<div class="wrap--greybkgd">
+<div id="main-content" class="main" role="main">
+  {% if collection.handle == settings.collection_one_hero %}
+    {% assign bgcolor = settings.collection_one_hero_bgcolor %}
+    {% assign txcolor = settings.collection_one_hero_textcolor %}
+  {% elsif collection.handle == settings.collection_two_hero %}
+    {% assign bgcolor = settings.collection_two_hero_bgcolor %}
+    {% assign txcolor = settings.collection_two_hero_textcolor %}
+  {% elsif collection.handle  == settings.collection_three_hero %}
+    {% assign bgcolor = settings.collection_three_hero_bgcolor %}
+    {% assign txcolor = settings.collection_three_hero_textcolor %}
+  {% else %}
+    {% assign bgcolor = settings.collection_hero_bgcolor %}
+    {% assign txcolor = settings.collection_hero_textcolor %}
+  {% endif %}
 
-	<article class="article collection-grid">
+  {% include 'header' %}
 
-		{% for product in collection.products %}
-		<div class="collection-grid__product box--large">
+  <section class="p-strip is-shallow is-bordered" style="background-color: {{ bgcolor }};">
+    <div class="row u-equal-height">
+      {% for product in collection.products %}
+        <div class="col-4 p-card--highlighted">
+          <h2>{{ product.title }}</h2>
+          <h3 style="color: #2c001e;">{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
+          {% if product.available %}
+            {% if product.variants.size > 1 %}
+              {% for variant in product.variants %}
+                {% assign min_purchase = '1'  %}
+                
+                {% for tag in product.tags %}
+                  {% if tag contains 'min-purchase' %}
+                    {% assign min_purchase = tag | remove: 'min-purchase-' %}
+                  {% endif %}
+                {% endfor %}
+                
+                <form action="/cart/add" method="post">
+                  <input type="hidden" name="id" value="{{ variant.id }}">
+                  <input type="hidden" name="quantity" value="{{ min_purchase }}">
+                  <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
+                </form>
+              {% endfor %}
+            {% else %}
+              {% assign min_purchase = '1'  %}
+              
+              {% for tag in product.tags %}
+                {% if tag contains 'min-purchase' %}
+                  {% assign min_purchase = tag | remove: 'min-purchase-' %}
+                {% endif %}
+              {% endfor %}
+              <form action="/cart/add" method="post">
+                <input type="hidden" name="id" value="{{ product.variants.first.id }}">
+                <input type="hidden" name="quantity" value="{{ min_purchase }}">
+                <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
+                {{ product.metafields.global.CTApostscript }}
+              </form>
+            {% endif %}
+          {% endif %}
 
-
-				<div class="product-heading">
-					<h2 class="product-heading__headline">{{ product.title }}</h2>
-					<h3 class="product-heading__price">{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
-					<p>{{ product.metafields.c_f['[p][_t]General Description'] }}</p>
-				</div><!-- .product-heading -->
-
-				<div class="product-content">
-					<span class="check-list">
-					{{ product.description | replace: '<li>**', '<li class="checked">' }}
-					</span>
-				</div><!-- .product-content -->
-
-				{% if product.available %}
-				{% if product.variants.size > 1 %}
-					<div class="product-split-actions">
-						{% for variant in product.variants %}
-							{% assign min_purchase = '1'  %}
-							{% for tag in product.tags %}
-								{% if tag contains 'min-purchase' %}
-									{% assign min_purchase = tag | remove: 'min-purchase-' %}
-								{% endif %}
-							{% endfor %}
-						<form action="/cart/add" method="post">
-							<div class="product-action {% cycle 'left', 'right' %}">
-								<input type="hidden" name="id" value="{{ variant.id }}">
-								<input type="hidden" name="quantity" value="{{ min_purchase }}">
-								<input type="submit" class="button--fullwidth" value="Add {{ variant.option1 }} to Cart">
-							</div><!-- .product-action -->
-						</form>
-						{% endfor %}
-					</div>
-				{% else %}
-					{% assign min_purchase = '1'  %}
-					{% for tag in product.tags %}
-						{% if tag contains 'min-purchase' %}
-							{% assign min_purchase = tag | remove: 'min-purchase-' %}
-						{% endif %}
-					{% endfor %}
-					<form action="/cart/add" method="post">
-						<div class="product-action">
-							<input type="hidden" name="id" value="{{ product.variants.first.id }}">
-							<input type="hidden" name="quantity" value="{{ min_purchase }}">
-							<input type="submit" class="button--fullwidth" value="Add to Cart">
-						</div><!-- .product-action -->
-					</form>
-				{% endif %}
-				{% endif %}
-
-
-		</div><!-- .collection-grid--product -->
-
-		{% else %}
-		<p>There are no products in this view.</p>
-		{% endfor %}
-
-	</article><!-- .article -->
-
-</div><!-- .wrap -->
-
-{% comment %}
-{% unless collection.description == blank or collection.description.empty? %}
-<div class="wrap--darkgreybkgd">
-
-	<article class="article article-base">
-
-		{% unless collection.metafields.c_f['[c][_t]Pkg Includes Headline'] == blank or collection.metafields.c_f['[c][_t]Pkg Includes Headline'].empty? %}
-		<h3 class="article-headline">{{ collection.metafields.c_f['[c][_t]Pkg Includes Headline'] }}</h3>
-		{% endunless %}
-
-		<div class="multi-column-list list-headlines">
-		{{ collection.description }}
-		</div><!-- .multi-column -->
-
-	</article><!-- .article -->
-
-</div><!-- .wrap -->
-{% endunless %}
-{% endcomment %}
+          {{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item p-list__item--tall is-ticked">' | replace: '<p>', '<p class="p-product-description">' }}
+        </div>
+      {% else %}
+        <div class="row">
+          <div class="col-12">
+            <p>There are no products in this view.</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+</div>

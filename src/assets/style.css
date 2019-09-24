@@ -1,3 +1,22 @@
+.p-button--shop-cta {
+  width: 100%; }
+
+@media (min-width: 772px) {
+  .p-button--shop-cta {
+    padding: 1rem; } }
+
+.p-button__postscript {
+  display: block;
+  margin-bottom: .5rem; }
+
+@media (min-width: 772px) {
+  .p-button__postscript {
+    min-height: 2rem; } }
+
+@media (min-width: 772px) {
+  .p-list__item--tall {
+    min-height: 4rem; } }
+
 .p-navigation {
   background-color: #333; }
 
@@ -36,9 +55,16 @@
   order: 1;
   padding: 0.5rem 1.5rem 0; }
 
-@media (max-width: 772px) {
+@media (max-width: 771px) {
   .p-navigation__link--cart {
     padding: .75rem 1.5rem; } }
 
 .p-navigation__link--cart:hover {
   background: #2b2b2b; }
+
+@media (min-width: 772px) {
+  .p-product-description {
+    min-height: 5rem; } }
+
+.is-ticked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Ccircle fill='%23dd4814' cx='7' cy='7' r='7'/%3E%3Cpath fill='%23fff' d='M6.1 10.813L2.41 8.105l1.184-1.613L5.9 8.187l4.393-4.394 1.414 1.414z' /%3E%3C/svg%3E"); }

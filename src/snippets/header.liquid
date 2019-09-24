@@ -27,47 +27,33 @@
   </header>
 
 {% elsif template contains 'collection' %}
-<div style="display: none;">{{ collection.handle }}</div>
+  <div class="u-hide">{{ collection.handle }}</div>
 
-  {% if collection.handle == settings.collection_one_hero %}
-    {% assign bgcolor = settings.collection_one_hero_bgcolor %}
-    {% assign txcolor = settings.collection_one_hero_textcolor %}
-  {% elsif collection.handle == settings.collection_two_hero %}
-    {% assign bgcolor = settings.collection_two_hero_bgcolor %}
-    {% assign txcolor = settings.collection_two_hero_textcolor %}
-  {% elsif collection.handle  == settings.collection_three_hero %}
-    {% assign bgcolor = settings.collection_three_hero_bgcolor %}
-    {% assign txcolor = settings.collection_three_hero_textcolor %}
-  {% else %}
-    {% assign bgcolor = settings.collection_hero_bgcolor %}
-    {% assign txcolor = settings.collection_hero_textcolor %}
-  {% endif %}
+  <section style="background-color: {{ bgcolor }}; color: {{ txcolor }};">
+    <div class="p-strip">
+      <div class="row u-vertically-center">
+        <div class="col-8">
+          <h1>{{ collection.title }}</h1>
+          
+          {% unless collection.description == blank or collection.description.empty? %}
+            <p class="p-heading--four">{{ collection.description }}</p>
+          {% endunless %}
+        </div>
 
-  <header class="main-header" style="background-color: {{ bgcolor }}; color: {{ txcolor }};">
-
-    {% include 'site-nav' %}
-
-    {% if template contains 'collection' %}
-    <div class="main-header__wrap">
-      {% unless collection.image == blank or collection.image.empty? %}
-      <div class="main-header__productimage">
-        <img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}">
-      </div>
-      {% endunless %}
-      <div class="main-header__text">
-        <h1 class="main-heading">{{ collection.title }}</h1>
-        {% unless collection.description == blank or collection.description.empty? %}
-        <p class="main-subheading">{{ collection.metafields.c_f['[c][_t]Collection Subheading'] }}</p>
+        {% unless collection.image == blank or collection.image.empty? %}
+          <div class="col-start-large-10 col-3 u-hide--small">
+            <img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}" />
+          </div>
         {% endunless %}
       </div>
-    </div><!-- .main-header__wrap -->
-    {% else %}
-    <div class="main-header__wrap short-header">
-      <div class="main-header__text">
-        <h1 class="main-heading">{{ template }}</h1>
+    </div>
+  </section>
+{% else %}
+  <section>
+    <div class="p-strip">
+      <div class="u-fixed-width">
+        <h1>{{ template }}</h1>
       </div>
-    </div><!-- .main-header__wrap -->
-    {% endif %}
-
-  </header><!-- .main-header -->
+    </div>
+  </section>
 {% endif %}
