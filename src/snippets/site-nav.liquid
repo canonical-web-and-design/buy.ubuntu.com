@@ -11,8 +11,8 @@
       <a href="#navigation-closed" class="p-navigation__toggle--close" title="close menu">Close menu</a>
     </div>
     <nav class="p-navigation__nav">
-      <a class="p-navigation__link--cart" href="/cart">
-        <svg version="1.1" fill="#fff" class="p-navigation__image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 416 448"><path d="M160 384q0 13-9.5 22.5t-22.5 9.5-22.5-9.5-9.5-22.5 9.5-22.5 22.5-9.5 22.5 9.5 9.5 22.5zM384 384q0 13-9.5 22.5t-22.5 9.5-22.5-9.5-9.5-22.5 9.5-22.5 22.5-9.5 22.5 9.5 9.5 22.5zM416 112v128q0 6-4.125 10.625t-10.125 5.375l-261 30.5q3.25 15 3.25 17.5 0 4-6 16h230q6.5 0 11.25 4.75t4.75 11.25-4.75 11.25-11.25 4.75h-256q-6.5 0-11.25-4.75t-4.75-11.25q0-2.75 2-7.875t4-9 5.375-10 3.875-7.375l-44.25-205.75h-51q-6.5 0-11.25-4.75t-4.75-11.25 4.75-11.25 11.25-4.75h64q4 0 7.125 1.625t4.875 3.875 3.25 6.125 2 6.5 1.375 7.375 1.125 6.5h300.25q6.5 0 11.25 4.75t4.75 11.25z"></path></svg>
+      <a class="p-navigation__link--cart {% if cart.item_count > 0 %}p-navigation__link--cart-count{% endif %}" href="/cart" data-item-count="{{ cart.item_count }}">
+        <svg version="1.1" fill="#fff" class="p-navigation__image" style="height: 2rem;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 416 448"><path d="M160 384q0 13-9.5 22.5t-22.5 9.5-22.5-9.5-9.5-22.5 9.5-22.5 22.5-9.5 22.5 9.5 9.5 22.5zM384 384q0 13-9.5 22.5t-22.5 9.5-22.5-9.5-9.5-22.5 9.5-22.5 22.5-9.5 22.5 9.5 9.5 22.5zM416 112v128q0 6-4.125 10.625t-10.125 5.375l-261 30.5q3.25 15 3.25 17.5 0 4-6 16h230q6.5 0 11.25 4.75t4.75 11.25-4.75 11.25-11.25 4.75h-256q-6.5 0-11.25-4.75t-4.75-11.25q0-2.75 2-7.875t4-9 5.375-10 3.875-7.375l-44.25-205.75h-51q-6.5 0-11.25-4.75t-4.75-11.25 4.75-11.25 11.25-4.75h64q4 0 7.125 1.625t4.875 3.875 3.25 6.125 2 6.5 1.375 7.375 1.125 6.5h300.25q6.5 0 11.25 4.75t4.75 11.25z"></path></svg>
       </a>
       <span class="u-off-screen">
         <a href="#main-content">Jump to main content</a>

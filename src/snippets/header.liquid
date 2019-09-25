@@ -10,21 +10,19 @@
     </div>
   </section>
 {% elsif template contains 'cart' %}
-  <header class="cart-header" style="background-color: #f1f1f1;">
-    {% include 'site-nav' %}
-
-    <div class="p-strip--light">
+  <section class="cart-header" style="background-color: #f1f1f1;">
+    <div class="p-strip">
       <div class="row">
         <div class="col-12">
           <h1>Shopping Cart</h1>
           {% if cart.item_count < 1 %}
-            <h2>It appears that your cart is currently empty!</h2>
+            <h2>It appears that your cart is currently empty.</h2>
             <h3>You can continue browsing <a href="/">here</a>.</h3>
           {% endif %}
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
 {% elsif template contains 'collection' %}
   <div class="u-hide">{{ collection.handle }}</div>

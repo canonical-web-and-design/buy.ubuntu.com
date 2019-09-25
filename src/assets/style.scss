@@ -1,9 +1,15 @@
+$grid-border-color: #cdcdcd;
+
 .p-button {
   &--shop-cta {
     width: 100%;
 
     @media (min-width: 772px) {
       padding: 1rem;
+    }
+
+    & + & {
+      margin-top: 1rem;
     }
   }
 
@@ -14,6 +20,48 @@
     @media (min-width: 772px) {
       min-height: 2rem;
     }
+  }
+}
+
+.p-inline-grid {
+  border: 1px solid $grid-border-color;
+  border-radius: 2px;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &__cta {
+    cursor: pointer;
+    transition-duration: 0.165s;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &:hover {
+      background-color: $grid-border-color;
+    }
+  }
+
+  li {
+    border-right: 1px solid $grid-border-color;
+    flex: 1 1 100%;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    > * {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  input[readonly] {
+    border: 0;
+    color: #333;
+    margin: 0;
+    min-width: 0;
+    text-align: inherit;
   }
 }
 
@@ -66,6 +114,7 @@
   &__link--cart {
     order: 1;
     padding: 0.5rem 1.5rem 0;
+    position: relative;
 
     @media (max-width: 771px) {
       padding: .75rem 1.5rem;
@@ -73,6 +122,21 @@
 
     &:hover {
       background: #2b2b2b;
+    }
+
+    &-count::before {
+      background-color: #c7162b;
+      border-radius: 100%;
+      color: #fff;
+      content: attr(data-item-count);
+      display: block;
+      height: 1.5rem;
+      font-weight: bold;
+      position: absolute;
+      right: .7rem;
+      text-align: center;
+      top: .2rem;
+      width: 1.5rem;
     }
   }
 }
