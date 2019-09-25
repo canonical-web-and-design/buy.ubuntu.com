@@ -1,9 +1,15 @@
+$grid-border-color: #cdcdcd;
+
 .p-button {
   &--shop-cta {
     width: 100%;
 
     @media (min-width: 772px) {
       padding: 1rem;
+    }
+
+    & + & {
+      margin-top: 1rem;
     }
   }
 
@@ -14,6 +20,48 @@
     @media (min-width: 772px) {
       min-height: 2rem;
     }
+  }
+}
+
+.p-inline-grid {
+  border: 1px solid $grid-border-color;
+  border-radius: 2px;
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &__cta {
+    cursor: pointer;
+    transition-duration: 0.165s;
+    transition-property: background-color;
+    transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+    &:hover {
+      background-color: $grid-border-color;
+    }
+  }
+
+  li {
+    border-right: 1px solid $grid-border-color;
+    flex: 1 1 100%;
+
+    &:last-child {
+      border-right: none;
+    }
+
+    > * {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  input[readonly] {
+    border: 0;
+    color: #333;
+    margin: 0;
+    min-width: 0;
+    text-align: inherit;
   }
 }
 
