@@ -27,9 +27,15 @@
                 {% endfor %}
 
                 {% assign min_increment = '1'  %}
+                {% assign min_quantity = '1'  %}
+
                 {% for tag in item.product.tags %}
                   {% if tag contains 'increment-by' %}
                     {% assign min_increment = tag | remove: 'increment-by-' %}
+                  {% elsif tag contains 'min-purchase-10' %}
+                    {% assign min_quantity = '10' %}
+                  {% elsif tag contains 'min-purchase-20' %}
+                    {% assign min_quantity = '20' %}
                   {% endif %}
                 {% endfor %}
 
@@ -72,7 +78,13 @@
                         </li>
                       </ul>
 
-                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="u-float-right p-muted-heading" style="color: #666; margin-top: 1rem;">Remove</a>
+                      {% if min_quantity != '1' %}
+                        <small class="u-float-right u-no-margin--bottom">Minimum order: {{ min_quantity }}</small>
+                      {% endif %}
+                    </div>
+
+                    <div class="col-12 u-align--right">          
+                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
                     </div>
                   </div>
                 </li>
