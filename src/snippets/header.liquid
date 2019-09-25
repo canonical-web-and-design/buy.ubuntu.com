@@ -10,10 +10,8 @@
     </div>
   </section>
 {% elsif template contains 'cart' %}
-  <header class="cart-header" style="background-color: #f1f1f1;">
-    {% include 'site-nav' %}
-
-    <div class="p-strip--light">
+  <section class="cart-header" style="background-color: #f1f1f1;">
+    <div class="p-strip">
       <div class="row">
         <div class="col-12">
           <h1>Shopping Cart</h1>
@@ -24,7 +22,7 @@
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
 {% elsif template contains 'collection' %}
   <div class="u-hide">{{ collection.handle }}</div>
