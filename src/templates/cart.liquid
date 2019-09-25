@@ -81,10 +81,12 @@
                       {% if min_quantity != '1' %}
                         <small class="u-float-right u-no-margin--bottom">Minimum order: {{ min_quantity }}</small>
                       {% endif %}
-                    </div>
 
-                    <div class="col-12 u-align--right">          
-                      <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
+                      <div class="row u-align--right">
+                        <div class="col-2">
+                          <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </li>
