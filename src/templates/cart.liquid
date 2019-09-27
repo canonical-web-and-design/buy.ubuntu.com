@@ -112,8 +112,10 @@
                 <h3 class="p-heading--four u-float-left">Subtotal:</h3>
                 <span class="p-heading--three u-float-right">{{ cart.total_price | money }}</span>
               </div>
-              <input type="checkbox" id="agree_to_tac" name=="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
-              <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" type="submit">Check out</button>
+              <input type="checkbox" id="agree_to_tac" name="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
+
+              {% comment %}For the checkout button to work, it needs to use a name attribute set to 'checkout'.{% endcomment %}
+              <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" name="checkout" type="submit">Check out</button>
               <a class="p-button--neutral p-button--shop-cta" href="/">Continue shopping</a>
             </div>
           </div>
