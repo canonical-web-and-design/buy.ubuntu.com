@@ -1,128 +1,126 @@
-{% include 'site-nav' %}
+{% include 'header' %}
 
-<div id="main-content" class="main shopping-cart" role="main">
-  {% include 'header' %}
+{% if cart.item_count > 0 %}
+  <section class="p-strip is-bordered is-shallow shopping-cart" style="background-color: #f1f1f1;">
+    <div class="row">
+      <div class="col-12">
+        <form action="/cart" method="post">
+          <ul class="p-list u-sv2">
+            {% for item in cart.items %}
+              {% assign collection_url = item.product.collections.last.url %}
+              {% if collection_url == '/collections/frontpage' or collection_url == blank %}
+                {% assign collection_url = '/collections/all' %}
+              {% endif %}
 
-  {% if cart.item_count > 0 %}
-    <section class="p-strip is-bordered is-shallow" style="background-color: #f1f1f1;">
-      <div class="row">
-        <div class="col-12">
-          <form action="/cart" method="post">
-            <ul class="p-list u-sv2">
-              {% for item in cart.items %}
-                {% assign collection_url = item.product.collections.last.url %}
-                {% if collection_url == '/collections/frontpage' or collection_url == blank %}
-                  {% assign collection_url = '/collections/all' %}
+              {% if forloop.first %}
+                {% assign continue_shopping_url = collection_url %}
+              {% endif %}
+
+              {% assign min_purchase = '1'  %}
+              {% for tag in item.product.tags %}
+                {% if tag contains 'min-purchase' %}
+                  {% assign min_purchase = tag | remove: 'min-purchase-' %}
+                {% endif %}
+              {% endfor %}
+
+              {% assign min_increment = '1'  %}
+              {% assign min_quantity = '1'  %}
+
+              {% for tag in item.product.tags %}
+                {% if tag contains 'increment-by' %}
+                  {% assign min_increment = tag | remove: 'increment-by-' %}
+                {% elsif tag contains 'min-purchase-10' %}
+                  {% assign min_quantity = '10' %}
+                {% elsif tag contains 'min-purchase-20' %}
+                  {% assign min_quantity = '20' %}
+                {% endif %}
+              {% endfor %}
+
+              <li class="p-card--highlighted cart_item" data-increment-amount="{{ min_increment }}" data-min-amount="{{ min_purchase }}" data-product-index="{{ forloop.index }}">
+                {% assign product_icon = 'icon-' %}
+                {% if item.title contains 'Desktop' %}
+                  {% assign product_icon = product_icon | append: 'desktop.png' %}
+                {% elsif item.title contains 'Server' %}
+                  {% assign product_icon = product_icon | append: 'servers.png' %}
+                {% elsif item.title contains 'Guest' %}
+                  {% assign product_icon = product_icon | append: 'vguests.png' %}
                 {% endif %}
 
-                {% if forloop.first %}
-                  {% assign continue_shopping_url = collection_url %}
-                {% endif %}
+                <div class="row u-vertically-center">
+                  <div class="col-2 u-hide--small">
+                    <img src="{{ product_icon | asset_url }}" alt="{{ item.title }}">
+                  </div>
+                  
+                  <div class="col-8">
+                    <h2><a href="{{ collection_url }}" title="{{ item.title }}">{{ item.title }}</a></h2>
+                    <h3>{{ item.line_price | money_with_currency }}</h3>
+                  </div>
 
-                {% assign min_purchase = '1'  %}
-                {% for tag in item.product.tags %}
-                  {% if tag contains 'min-purchase' %}
-                    {% assign min_purchase = tag | remove: 'min-purchase-' %}
-                  {% endif %}
-                {% endfor %}
+                  <div class="col-2 col-medium-4 col-start-medium-3">
+                    <ul class="p-inline-grid u-align--center cart_item--qty">
+                      <li>
+                        <span class="p-inline-grid__cta decrement" style="line-height: 2.2rem; display: block;">
+                          <i class="p-icon--minus"></i>
+                        </span>
+                      </li>
 
-                {% assign min_increment = '1'  %}
-                {% assign min_quantity = '1'  %}
+                      <li>
+                        <input class="cart_item--input" type="number" value="{{ item.quantity }}" step="{{ min_increment }}" min="{{ min_purchase }}" readonly required>
+                      </li>
 
-                {% for tag in item.product.tags %}
-                  {% if tag contains 'increment-by' %}
-                    {% assign min_increment = tag | remove: 'increment-by-' %}
-                  {% elsif tag contains 'min-purchase-10' %}
-                    {% assign min_quantity = '10' %}
-                  {% elsif tag contains 'min-purchase-20' %}
-                    {% assign min_quantity = '20' %}
-                  {% endif %}
-                {% endfor %}
+                      <li>
+                        <span class="p-inline-grid__cta increment" style="line-height: 2.2rem; display: block;">
+                          <i class="p-icon--plus"></i>
+                        </span>
+                      </li>
+                    </ul>
 
-                <li class="p-card--highlighted cart_item" data-increment-amount="{{ min_increment }}" data-min-amount="{{ min_purchase }}" data-product-index="{{ forloop.index }}">
-                  {% assign product_icon = 'icon-' %}
-                  {% if item.title contains 'Desktop' %}
-                    {% assign product_icon = product_icon | append: 'desktop.png' %}
-                  {% elsif item.title contains 'Server' %}
-                    {% assign product_icon = product_icon | append: 'servers.png' %}
-                  {% elsif item.title contains 'Guest' %}
-                    {% assign product_icon = product_icon | append: 'vguests.png' %}
-                  {% endif %}
+                    {% if min_quantity != '1' %}
+                      <small class="u-float-right u-no-margin--bottom">Minimum order: {{ min_quantity }}</small>
+                    {% endif %}
 
-                  <div class="row u-vertically-center">
-                    <div class="col-2 u-hide--small">
-                      <img src="{{ product_icon | asset_url }}" alt="{{ item.title }}">
-                    </div>
-                    
-                    <div class="col-8">
-                      <h2><a href="{{ collection_url }}" title="{{ item.title }}">{{ item.title }}</a></h2>
-                      <h3>{{ item.line_price | money_with_currency }}</h3>
-                    </div>
-
-                    <div class="col-2 col-medium-4 col-start-medium-3">
-                      <ul class="p-inline-grid u-align--center cart_item--qty">
-                        <li>
-                          <span class="p-inline-grid__cta decrement" style="line-height: 2.2rem; display: block;">
-                            <i class="p-icon--minus"></i>
-                          </span>
-                        </li>
-
-                        <li>
-                          <input class="cart_item--input" type="number" value="{{ item.quantity }}" step="{{ min_increment }}" min="{{ min_purchase }}" readonly required>
-                        </li>
-
-                        <li>
-                          <span class="p-inline-grid__cta increment" style="line-height: 2.2rem; display: block;">
-                            <i class="p-icon--plus"></i>
-                          </span>
-                        </li>
-                      </ul>
-
-                      {% if min_quantity != '1' %}
-                        <small class="u-float-right u-no-margin--bottom">Minimum order: {{ min_quantity }}</small>
-                      {% endif %}
-
-                      <div class="row u-align--right">
-                        <div class="col-2">
-                          <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
-                        </div>
+                    <div class="row u-align--right">
+                      <div class="col-2">
+                        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
                       </div>
                     </div>
                   </div>
-                </li>
-              {% endfor %}
-            </ul>
-
-            <div class="row">
-              <div class="col-6">
-                {% if settings.cart_promo_toggle %}
-                  <div class="row u-sv3">
-                    <div class="col-1 col-small-1 col-medium-1">
-                      <img src="{{ 'cart_promo_img.png' | asset_url }}" alt="{{ settings.cart_promo__heading }}" />
-                    </div>
-                    <div class="col-5 col-small-3 col-medium-5">
-                      <h3 class="p-heading--four">{{ settings.cart_promo_heading }}</h3>
-                      <p>{{ settings.cart_promo_copy }}</p>
-                      <a href="{{ settings.cart_promo_link }}">{{ settings.cart_promo_link_copy }} ›</a>
-                    </div>
-                  </div>
-                  <hr class="u-hide--medium u-hide--large" />
-                {% endif %}
-              </div>
-
-              <div class="col-5 col-start-large-9">
-                <div class="u-clearfix">
-                  <h3 class="p-heading--four u-float-left">Subtotal:</h3>
-                  <span class="p-heading--three u-float-right">{{ cart.total_price | money }}</span>
                 </div>
-                <input type="checkbox" id="agree_to_tac" name=="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
-                <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" type="submit">Check out</button>
-                <a class="p-button--neutral p-button--shop-cta" href="/">Continue shopping</a>
-              </div>
+              </li>
+            {% endfor %}
+          </ul>
+
+          <div class="row">
+            <div class="col-6">
+              {% if settings.cart_promo_toggle %}
+                <div class="row u-sv3">
+                  <div class="col-1 col-small-1 col-medium-1">
+                    <img src="{{ 'cart_promo_img.png' | asset_url }}" alt="{{ settings.cart_promo__heading }}" />
+                  </div>
+                  <div class="col-5 col-small-3 col-medium-5">
+                    <h3 class="p-heading--four">{{ settings.cart_promo_heading }}</h3>
+                    <p>{{ settings.cart_promo_copy }}</p>
+                    <a href="{{ settings.cart_promo_link }}">{{ settings.cart_promo_link_copy }} ›</a>
+                  </div>
+                </div>
+                <hr class="u-hide--medium u-hide--large" />
+              {% endif %}
             </div>
-          </form>
-        </div>
+
+            <div class="col-5 col-start-large-9">
+              <div class="u-clearfix">
+                <h3 class="p-heading--four u-float-left">Subtotal:</h3>
+                <span class="p-heading--three u-float-right">{{ cart.total_price | money }}</span>
+              </div>
+              <input type="checkbox" id="agree_to_tac" name="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
+
+              {% comment %}For the checkout button to work, it needs to use a name attribute set to 'checkout'.{% endcomment %}
+              <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" name="checkout" type="submit">Check out</button>
+              <a class="p-button--neutral p-button--shop-cta" href="/">Continue shopping</a>
+            </div>
+          </div>
+        </form>
       </div>
-    </section>
-  {% endif %}
-</div>
+    </div>
+  </section>
+{% endif %}

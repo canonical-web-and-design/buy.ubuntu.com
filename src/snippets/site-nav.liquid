@@ -3,7 +3,7 @@
     <div class="p-navigation__banner">
       <div class="p-navigation__logo" style="padding-bottom: 0.3rem;">
         <a class="p-navigation__link" href="/">
-          <img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" class="p-navigation__image" style="max-height: 1.5rem;" />
+          <img src="https://assets.ubuntu.com/v1/f263d9c4-logo-ubuntu-white.svg" class="p-navigation__image" style="max-height: 1.5rem;" alt="Ubuntu logo" />
           <span class="p-heading--five u-no-margin--bottom">advantage</span>
         </a>
       </div>
@@ -19,7 +19,7 @@
       </span>
       <ul class="p-navigation__links" role="menu">
         {% for link in linklists.main-menu.links %}
-          <li class="p-navigation__link" role="menu-item">
+          <li class="p-navigation__link" role="menuitem">
             <a href="{{ link.url }}">{{ link.title }}</a>
           </li>
         {% endfor %}

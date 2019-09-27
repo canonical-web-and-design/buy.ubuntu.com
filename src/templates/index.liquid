@@ -1,176 +1,170 @@
-{% include 'site-nav' %}
+{% include 'header' %}
 
-<div id="main-content" class="main" role="main">
-  {% include 'header' %}
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-7">
-        <h3>{{ settings.home_featured_heading }}</h3>
-        <p>{{ settings.home_featured_description }}</p>
-        {% unless settings.homepage_page == blank or pages[settings.homepage_page].empty? %}
-        {% assign page = pages[settings.homepage_page] %}
-          {{ page.content | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li class="p-list__item is-ticked">' }}
-          </ul>
-        {% endunless %}
-      </div>
-      <div class="col-5">
-        {% if settings.home_featured_collection_one %}
-        {% assign collect_one = collections[settings.home_featured_collection_one] %}
-        <div class="p-card--highlighted">
-          <a href="{{ collect_one.url }}" class="row u-equal-height u-vertically-center">
-            <div class="col-2 col-small-1 col-medium-2">
-              <img src="{{ 'icon-collection-1.png' | asset_url }}" alt="{{ collect_one.title }}">
-            </div>
-            <div class="col-3 col-small-3 col-medium-3">
-              <h4>{{ collect_one.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
-              <h5>{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
-              {% unless settings.home_featured_collection_one_desc == blank or settings.home_featured_collection_one_desc.empty? %}
-              <h6>{{ settings.home_featured_collection_one_desc }}</h6>
-              {% endunless %}
-            </div>
-          </a>
-        </div>
-        {% endif %}
-
-        {% if settings.home_featured_collection_two %}
-        {% assign collect_two = collections[settings.home_featured_collection_two] %}
-        <div class="p-card--highlighted">
-          <a href="{{ collect_two.url }}" class="row u-equal-height u-vertically-center">
-            <div class="col-2 col-small-1 col-medium-2">
-              <img src="{{ 'icon-collection-2.png' | asset_url }}" alt="{{ collect_two.title }}">
-            </div>
-            <div class="col-3 col-small-3 col-medium-3">
-              <h4>{{ collect_two.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
-              <h5>{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
-              {% unless settings.home_featured_collection_two_desc == blank or settings.home_featured_collection_two_desc.empty? %}
-              <h6>{{ settings.home_featured_collection_two_desc }}</h6>
-              {% endunless %}
-            </div>
-          </a>
-        </div>
-        {% endif %}
-
-        {% if settings.home_featured_collection_three %}
-        {% assign collect_three = collections[settings.home_featured_collection_three] %}
-        <div class="p-card--highlighted">
-          <a href="{{ collect_three.url }}" class="row u-equal-height u-vertically-center">
-            <div class="col-2 col-small-1 col-medium-2">
-              <img src="{{ 'icon-collection-3.png' | asset_url }}" alt="{{ collect_three.title }}">
-            </div>
-            <div class="col-3 col-small-3 col-medium-3">
-              <h4>{{ collect_three.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
-              <h5>{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
-              {% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
-              <h6>{{ settings.home_featured_collection_three_desc }}</h6>
-              {% endunless %}
-            </div>
-          </a>
-        </div>
-        {% endif %}
-      </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-7">
+      <h3>{{ settings.home_featured_heading }}</h3>
+      <p>{{ settings.home_featured_description }}</p>
+      {% unless settings.homepage_page == blank or pages[settings.homepage_page].empty? %}
+      {% assign page = pages[settings.homepage_page] %}
+        {{ page.content | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li class="p-list__item is-ticked">' }}
+      {% endunless %}
     </div>
-  </section>
-
-
-  {% unless settings.home_includes_toggle == false %}
-    <section class="p-strip">
-      <div class="row">
-        <div class="col-8">
-          <h3>{{ settings.home_includes_heading }}</h3>
-
-          {{ settings.home_includes_copy | replace: '<ul>', '<ul class="p-list">' | replace: '<li>', '<li class="p-list__item is-ticked">' }}
-        </div>
+    <div class="col-5">
+      {% if settings.home_featured_collection_one %}
+      {% assign collect_one = collections[settings.home_featured_collection_one] %}
+      <div class="p-card--highlighted">
+        <a href="{{ collect_one.url }}" class="row u-equal-height u-vertically-center">
+          <div class="col-2 col-small-1 col-medium-2">
+            <img src="{{ 'icon-collection-1.png' | asset_url }}" alt="{{ collect_one.title }}">
+          </div>
+          <div class="col-3 col-small-3 col-medium-3">
+            <h4>{{ collect_one.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+            <h5>{{ collect_one.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
+            {% unless settings.home_featured_collection_one_desc == blank or settings.home_featured_collection_one_desc.empty? %}
+            <h6>{{ settings.home_featured_collection_one_desc }}</h6>
+            {% endunless %}
+          </div>
+        </a>
       </div>
-    </section>
-  {% endunless %}
+      {% endif %}
+
+      {% if settings.home_featured_collection_two %}
+      {% assign collect_two = collections[settings.home_featured_collection_two] %}
+      <div class="p-card--highlighted">
+        <a href="{{ collect_two.url }}" class="row u-equal-height u-vertically-center">
+          <div class="col-2 col-small-1 col-medium-2">
+            <img src="{{ 'icon-collection-2.png' | asset_url }}" alt="{{ collect_two.title }}">
+          </div>
+          <div class="col-3 col-small-3 col-medium-3">
+            <h4>{{ collect_two.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+            <h5>{{ collect_two.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
+            {% unless settings.home_featured_collection_two_desc == blank or settings.home_featured_collection_two_desc.empty? %}
+            <h6>{{ settings.home_featured_collection_two_desc }}</h6>
+            {% endunless %}
+          </div>
+        </a>
+      </div>
+      {% endif %}
+
+      {% if settings.home_featured_collection_three %}
+      {% assign collect_three = collections[settings.home_featured_collection_three] %}
+      <div class="p-card--highlighted">
+        <a href="{{ collect_three.url }}" class="row u-equal-height u-vertically-center">
+          <div class="col-2 col-small-1 col-medium-2">
+            <img src="{{ 'icon-collection-3.png' | asset_url }}" alt="{{ collect_three.title }}">
+          </div>
+          <div class="col-3 col-small-3 col-medium-3">
+            <h4>{{ collect_three.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
+            <h5>{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
+            {% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
+            <h6>{{ settings.home_featured_collection_three_desc }}</h6>
+            {% endunless %}
+          </div>
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
 
 
+{% unless settings.home_includes_toggle == false %}
   <section class="p-strip">
-    <div class="u-fixed-width">
-      <h2 class="p-muted-heading u-align--center" style="max-width: none;">{{ settings.home_customers_heading }}</h2>
-      <ul class="p-inline-images">
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_one == true %}
-          <a href="{{ settings.link_customer_one_url | url_escape }}"><img src="{{ 'logo-bloomberg.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-bloomberg.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_two == true %}
-          <a href="{{ settings.link_customer_two_url | url_escape }}"><img src="{{ 'logo-att.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-att.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_three == true %}
-          <a href="{{ settings.link_customer_three_url | url_escape }}"><img src="{{ 'logo-walmart.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-walmart.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_four == true %}
-          <a href="{{ settings.link_customer_four_url | url_escape }}"><img src="{{ 'logo-tmobile.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-tmobile.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_five == true %}
-          <a href="{{ settings.link_customer_five_url | url_escape }}"><img src="{{ 'logo-ebay.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-ebay.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_six == true %}
-          <a href="{{ settings.link_customer_six_url | url_escape }}"><img src="{{ 'logo-cisco.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-cisco.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_seven == true %}
-          <a href="{{ settings.link_customer_seven_url | url_escape }}"><img src="{{ 'logo-ntt.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-ntt.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-        <li class="p-inline-images__item">
-        {% if settings.link_customer_eight == true %}
-          <a href="{{ settings.link_customer_eight_url | url_escape }}"><img src="{{ 'logo-bestbuy.png' | asset_url }}"></a>
-        {% else %}
-          <img src="{{ 'logo-bestbuy.png' | asset_url }}">
-        {% endif %}
-        </li>
-
-      </ul>
-    </div>
-  </section>
-
-
-  <section class="p-strip--dark" style="background-color: #2c001e;">
-    <div class="row u-vertically-center">
+    <div class="row">
       <div class="col-8">
-        <h2>{{ settings.home_canonical_heading }}{% if settings.home_canonical_heading_img == true %} <img src="{{ 'canonical-logo.png' | asset_url }}" alt="Canonical">{% endif %}</h2>
-        <p>{{ settings.home_canonical_description }}</p>
-        <p><a href="{{ settings.home_canonical_link | url_param_escape }}" class="p-link--external p-link--inverted">{{ settings.home_canonical_link_text }}</a></p>
-      </div>
+        <h3>{{ settings.home_includes_heading }}</h3>
 
-      <div class="col-4">
-        <img src="{{ 'canonical-image.png' | asset_url }}" alt="Canonical image">
+        {{ settings.home_includes_copy | replace: '<ul>', '<ul class="p-list">' | replace: '<li>', '<li class="p-list__item is-ticked">' }}
       </div>
     </div>
   </section>
-</div>
+{% endunless %}
+
+
+<section class="p-strip">
+  <div class="u-fixed-width">
+    <h2 class="p-muted-heading u-align--center" style="max-width: none;">{{ settings.home_customers_heading }}</h2>
+    <ul class="p-inline-images">
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_one == true %}
+        <a href="{{ settings.link_customer_one_url | url_escape }}"><img src="{{ 'logo-bloomberg.png' | asset_url }}" alt="Bloomberg logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-bloomberg.png' | asset_url }}"  alt="Bloomberg logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_two == true %}
+        <a href="{{ settings.link_customer_two_url | url_escape }}"><img src="{{ 'logo-att.png' | asset_url }}" alt="AT&T logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-att.png' | asset_url }}" alt="AT&T logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_three == true %}
+        <a href="{{ settings.link_customer_three_url | url_escape }}"><img src="{{ 'logo-walmart.png' | asset_url }}" alt="Walmart logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-walmart.png' | asset_url }}" alt="Walmart logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_four == true %}
+        <a href="{{ settings.link_customer_four_url | url_escape }}"><img src="{{ 'logo-tmobile.png' | asset_url }}" alt="T-Mobile logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-tmobile.png' | asset_url }}" alt="T-Mobile logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_five == true %}
+        <a href="{{ settings.link_customer_five_url | url_escape }}"><img src="{{ 'logo-ebay.png' | asset_url }}" alt="Ebay logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-ebay.png' | asset_url }}" alt="Ebay logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_six == true %}
+        <a href="{{ settings.link_customer_six_url | url_escape }}"><img src="{{ 'logo-cisco.png' | asset_url }}" alt="Cisco logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-cisco.png' | asset_url }}" alt="Cisco logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_seven == true %}
+        <a href="{{ settings.link_customer_seven_url | url_escape }}"><img src="{{ 'logo-ntt.png' | asset_url }}" alt="NTT logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-ntt.png' | asset_url }}" alt="NTT logo" />
+      {% endif %}
+      </li>
+
+      <li class="p-inline-images__item">
+      {% if settings.link_customer_eight == true %}
+        <a href="{{ settings.link_customer_eight_url | url_escape }}"><img src="{{ 'logo-bestbuy.png' | asset_url }}" alt="Best Buy logo" /></a>
+      {% else %}
+        <img src="{{ 'logo-bestbuy.png' | asset_url }}" alt="Best Buy logo" />
+      {% endif %}
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+
+<section class="p-strip--dark" style="background-color: #2c001e;">
+  <div class="row u-vertically-center">
+    <div class="col-8">
+      <h2>{{ settings.home_canonical_heading }}{% if settings.home_canonical_heading_img == true %} <img src="{{ 'canonical-logo.png' | asset_url }}" alt="Canonical">{% endif %}</h2>
+      <p>{{ settings.home_canonical_description }}</p>
+      <p><a href="{{ settings.home_canonical_link | url_param_escape }}" class="p-link--external p-link--inverted">{{ settings.home_canonical_link_text }}</a></p>
+    </div>
+
+    <div class="col-4">
+      <img src="{{ 'canonical-image.png' | asset_url }}" alt="Canonical image">
+    </div>
+  </div>
+</section>
