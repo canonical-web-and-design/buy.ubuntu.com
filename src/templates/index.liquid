@@ -11,7 +11,6 @@
         {% unless settings.homepage_page == blank or pages[settings.homepage_page].empty? %}
         {% assign page = pages[settings.homepage_page] %}
           {{ page.content | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li class="p-list__item is-ticked">' }}
-          </ul>
         {% endunless %}
       </div>
       <div class="col-5">
@@ -60,7 +59,7 @@
             </div>
             <div class="col-3 col-small-3 col-medium-3">
               <h4>{{ collect_three.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h4>
-              <h5>{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }}</span> {{ settings.home_featured_pricing }}</h5>
+              <h5>{{ collect_three.metafields.c_f['[c]Collection Price'] | money_without_trailing_zeros }} {{ settings.home_featured_pricing }}</h5>
               {% unless settings.home_featured_collection_three_desc == blank or settings.home_featured_collection_three_desc.empty? %}
               <h6>{{ settings.home_featured_collection_three_desc }}</h6>
               {% endunless %}
@@ -90,68 +89,67 @@
     <div class="u-fixed-width">
       <h2 class="p-muted-heading u-align--center" style="max-width: none;">{{ settings.home_customers_heading }}</h2>
       <ul class="p-inline-images">
-
         <li class="p-inline-images__item">
         {% if settings.link_customer_one == true %}
-          <a href="{{ settings.link_customer_one_url | url_escape }}"><img src="{{ 'logo-bloomberg.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_one_url | url_escape }}"><img src="{{ 'logo-bloomberg.png' | asset_url }}" alt="Bloomberg logo" /></a>
         {% else %}
-          <img src="{{ 'logo-bloomberg.png' | asset_url }}">
+          <img src="{{ 'logo-bloomberg.png' | asset_url }}"  alt="Bloomberg logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_two == true %}
-          <a href="{{ settings.link_customer_two_url | url_escape }}"><img src="{{ 'logo-att.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_two_url | url_escape }}"><img src="{{ 'logo-att.png' | asset_url }}" alt="AT&T logo" /></a>
         {% else %}
-          <img src="{{ 'logo-att.png' | asset_url }}">
+          <img src="{{ 'logo-att.png' | asset_url }}" alt="AT&T logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_three == true %}
-          <a href="{{ settings.link_customer_three_url | url_escape }}"><img src="{{ 'logo-walmart.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_three_url | url_escape }}"><img src="{{ 'logo-walmart.png' | asset_url }}" alt="Walmart logo" /></a>
         {% else %}
-          <img src="{{ 'logo-walmart.png' | asset_url }}">
+          <img src="{{ 'logo-walmart.png' | asset_url }}" alt="Walmart logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_four == true %}
-          <a href="{{ settings.link_customer_four_url | url_escape }}"><img src="{{ 'logo-tmobile.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_four_url | url_escape }}"><img src="{{ 'logo-tmobile.png' | asset_url }}" alt="T-Mobile logo" /></a>
         {% else %}
-          <img src="{{ 'logo-tmobile.png' | asset_url }}">
+          <img src="{{ 'logo-tmobile.png' | asset_url }}" alt="T-Mobile logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_five == true %}
-          <a href="{{ settings.link_customer_five_url | url_escape }}"><img src="{{ 'logo-ebay.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_five_url | url_escape }}"><img src="{{ 'logo-ebay.png' | asset_url }}" alt="Ebay logo" /></a>
         {% else %}
-          <img src="{{ 'logo-ebay.png' | asset_url }}">
+          <img src="{{ 'logo-ebay.png' | asset_url }}" alt="Ebay logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_six == true %}
-          <a href="{{ settings.link_customer_six_url | url_escape }}"><img src="{{ 'logo-cisco.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_six_url | url_escape }}"><img src="{{ 'logo-cisco.png' | asset_url }}" alt="Cisco logo" /></a>
         {% else %}
-          <img src="{{ 'logo-cisco.png' | asset_url }}">
+          <img src="{{ 'logo-cisco.png' | asset_url }}" alt="Cisco logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_seven == true %}
-          <a href="{{ settings.link_customer_seven_url | url_escape }}"><img src="{{ 'logo-ntt.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_seven_url | url_escape }}"><img src="{{ 'logo-ntt.png' | asset_url }}" alt="NTT logo" /></a>
         {% else %}
-          <img src="{{ 'logo-ntt.png' | asset_url }}">
+          <img src="{{ 'logo-ntt.png' | asset_url }}" alt="NTT logo" />
         {% endif %}
         </li>
 
         <li class="p-inline-images__item">
         {% if settings.link_customer_eight == true %}
-          <a href="{{ settings.link_customer_eight_url | url_escape }}"><img src="{{ 'logo-bestbuy.png' | asset_url }}"></a>
+          <a href="{{ settings.link_customer_eight_url | url_escape }}"><img src="{{ 'logo-bestbuy.png' | asset_url }}" alt="Best Buy logo" /></a>
         {% else %}
-          <img src="{{ 'logo-bestbuy.png' | asset_url }}">
+          <img src="{{ 'logo-bestbuy.png' | asset_url }}" alt="Best Buy logo" />
         {% endif %}
         </li>
 

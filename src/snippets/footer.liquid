@@ -4,7 +4,7 @@
       {% if linklists.footer.links.size > 0 %}
       <div class="col-3">
         <h4 class="p-muted-heading">{{ settings.footer_nav_headline | upcase }}</h4>
-        <ul class="p-list" role="navigation">
+        <ul class="p-list">
         {% for link in linklists.footer.links %}
           <li class="p-list__item"><a href="{{ link.url }}" title="{{ link.title }}"{% if link.active %} class="active"{% endif %}>{{ link.title }}</a></li>
         {% endfor %}
