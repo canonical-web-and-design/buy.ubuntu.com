@@ -3,49 +3,45 @@
 	window.location.replace("{{ shop.url }}");
 </script>
 
-{% include 'site-nav' %}
-
-<div id="main-content" class="main" role="main">
-  <section class="p-strip is-bordered">
-    <div class="row">
-      <div class="col-12">
-        <form class="p-search-box" action="/search" method="get" role="search">
-          <input type="search" class="p-search-box__input" name="q" placeholder="Search store..." required="" value="{{ search.terms | escape }}">
-          <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
-        </form>
-      </div>
-
-      <div class="col-12">
-        {% if search.performed %} 
-          {% paginate search.results by 10 %}
-        
-          {% if search.results_count == 0 %}  
-            <p>Your search for "{{ search.terms }}" did not yield any results.</p>
-          {% else %}
-            <ul class="p-list">
-              {% for item in search.results %}      
-                <li class="p-list__item">
-                  <div class="row u-sv3">
-                    <div class="col-12">
-                      <h3>{{ item.title | link_to: item.url }}</h3>
-
-                      {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
-                    </div>
-                  </div>      
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}    
-          
-          {% if paginate.pages > 1 %}
-            <div id="pagination">
-              {{ paginate | default_pagination }}
-            </div>
-          {% endif %}
-          
-          {% endpaginate %}    
-        {% endif %}  
-      </div>
+<section class="p-strip is-bordered">
+  <div class="row">
+    <div class="col-12">
+      <form class="p-search-box" action="/search" method="get" role="search">
+        <input type="search" class="p-search-box__input" name="q" placeholder="Search store..." required="" value="{{ search.terms | escape }}">
+        <button type="submit" class="p-search-box__button" alt="search"><i class="p-icon--search"></i></button>
+      </form>
     </div>
-  </section>
-</div>
+
+    <div class="col-12">
+      {% if search.performed %} 
+        {% paginate search.results by 10 %}
+      
+        {% if search.results_count == 0 %}  
+          <p>Your search for "{{ search.terms }}" did not yield any results.</p>
+        {% else %}
+          <ul class="p-list">
+            {% for item in search.results %}      
+              <li class="p-list__item">
+                <div class="row u-sv3">
+                  <div class="col-12">
+                    <h3>{{ item.title | link_to: item.url }}</h3>
+
+                    {{ item.content | strip_html | truncatewords: 40 | highlight: search.terms }}
+                  </div>
+                </div>      
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}    
+        
+        {% if paginate.pages > 1 %}
+          <div id="pagination">
+            {{ paginate | default_pagination }}
+          </div>
+        {% endif %}
+        
+        {% endpaginate %}    
+      {% endif %}  
+    </div>
+  </div>
+</section>

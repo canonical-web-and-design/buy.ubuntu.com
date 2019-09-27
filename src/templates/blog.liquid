@@ -3,95 +3,91 @@
 	window.location.replace("{{ shop.url }}");
 </script>
 
-{% include 'site-nav' %}
+{% paginate blog.articles by 5 %}
 
-<div id="main-content" class="main" role="main">
-  {% paginate blog.articles by 5 %}
-
-  <section class="p-strip--light">
-    <div class="row">
-      <div class="col-12">
-        {% if current_tags %}
-          <h1>{{ blog.title | link_to: blog.url }}&nbsp;&raquo; {{ current_tags.first }}</h1>
-        {% else %}
-          <h1>{{ blog.title }}</h1>
-        {% endif %}
-      </div>
+<section class="p-strip--light">
+  <div class="row">
+    <div class="col-12">
+      {% if current_tags %}
+        <h1>{{ blog.title | link_to: blog.url }}&nbsp;&raquo; {{ current_tags.first }}</h1>
+      {% else %}
+        <h1>{{ blog.title }}</h1>
+      {% endif %}
     </div>
   </div>
-
-  <section class="p-strip is-bordered">
-    {% for article in blog.articles %}
-      
-    {% assign article_has_image = false %}
-    {% assign img_tag = '<' | append: 'img' %}
-    {% if article.excerpt_or_content contains img_tag %}
-      {% assign src = article.excerpt_or_content | split: 'src="' %}
-      {% assign src = src[1] | split: '"' | first %}
-      {% if src %}
-        {% assign article_has_image = true %}
-        {% assign image_src = src | replace: '_small', '' | replace: '_compact', '' | replace: '_medium', '' | replace: '_large', '' | replace: '_grande', '' %}
-      {% endif %}
-    {% endif %}  
-    
-    <div class="row">
-      <div class="col-12">
-        <h2>
-          <a href="{{ article.url }}">{{ article.title }}</a>
-        </h2>
-        <h3>
-          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
-        </h3>
-        <div class="row">
-          {% if article_has_image %}
-          <div class="col-3">
-            <a href="{{ article.url }}">
-              <span style="background-image: url({{ image_src }})">
-              </span>
-            </a>
-          </div>
-          <div class="col-9">         
-          {% else %}
-          <div class="col-12">
-          {% endif %}    
-
-            {% if article.excerpt.size > 0 %}
-              <div>{{ article.excerpt }}</div>
-            {% else %}
-              <p>{{ article.content | strip_html | truncatewords: 120 }}</p>
-            {% endif %}
-          </div>
-        
-          <p>
-            <a href="{{ article.url }}">Read more →</a>
-          </p>
-        </div>
-      </div>
-    </div>
-      {% if article.tags.size > 0 %}
-        <div class="row">
-          <div class="col-12">
-            <ul class="p-inline-list">
-              {% for tag in article.tags %}
-                <li class="p-inline-list__item" style="margin-right: 0;">
-                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      {% endif %}
-      {% unless forloop.last %}
-        <div class="u-fixed-width">
-          <hr />
-        </div>
-      {% endunless %}
-    {% endfor %}
-  </div>
-    
-  {% if paginate.pages > 1 %}
-    <div class="pagination">
-    {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
-  {% endif %}
-  {% endpaginate %}
 </div>
+
+<section class="p-strip is-bordered">
+  {% for article in blog.articles %}
+    
+  {% assign article_has_image = false %}
+  {% assign img_tag = '<' | append: 'img' %}
+  {% if article.excerpt_or_content contains img_tag %}
+    {% assign src = article.excerpt_or_content | split: 'src="' %}
+    {% assign src = src[1] | split: '"' | first %}
+    {% if src %}
+      {% assign article_has_image = true %}
+      {% assign image_src = src | replace: '_small', '' | replace: '_compact', '' | replace: '_medium', '' | replace: '_large', '' | replace: '_grande', '' %}
+    {% endif %}
+  {% endif %}  
+  
+  <div class="row">
+    <div class="col-12">
+      <h2>
+        <a href="{{ article.url }}">{{ article.title }}</a>
+      </h2>
+      <h3>
+        <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+      </h3>
+      <div class="row">
+        {% if article_has_image %}
+        <div class="col-3">
+          <a href="{{ article.url }}">
+            <span style="background-image: url({{ image_src }})">
+            </span>
+          </a>
+        </div>
+        <div class="col-9">         
+        {% else %}
+        <div class="col-12">
+        {% endif %}    
+
+          {% if article.excerpt.size > 0 %}
+            <div>{{ article.excerpt }}</div>
+          {% else %}
+            <p>{{ article.content | strip_html | truncatewords: 120 }}</p>
+          {% endif %}
+        </div>
+      
+        <p>
+          <a href="{{ article.url }}">Read more →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+    {% if article.tags.size > 0 %}
+      <div class="row">
+        <div class="col-12">
+          <ul class="p-inline-list">
+            {% for tag in article.tags %}
+              <li class="p-inline-list__item" style="margin-right: 0;">
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    {% endif %}
+    {% unless forloop.last %}
+      <div class="u-fixed-width">
+        <hr />
+      </div>
+    {% endunless %}
+  {% endfor %}
+</div>
+  
+{% if paginate.pages > 1 %}
+  <div class="pagination">
+  {{ paginate | default_pagination | replace: 'Previous', 'Newer articles' | replace: 'Next', 'Older articles' }}
+{% endif %}
+{% endpaginate %}

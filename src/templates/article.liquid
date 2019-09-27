@@ -3,59 +3,55 @@
 	window.location.replace("{{ shop.url }}");
 </script>
 
-{% include 'site-nav' %}
-
-<div id="main-content" class="main" role="main">
-  <article>
-    <div class="p-strip--light">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="title">
-            {{ article.title }}
-          </h1>
-          <h3 class="date">
-            <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
-          </h3>
-        </div>
+<article>
+  <div class="p-strip--light">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="title">
+          {{ article.title }}
+        </h1>
+        <h3 class="date">
+          <time pubdate datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+        </h3>
       </div>
     </div>
+  </div>
 
-    <div class="p-strip is-bordered">
-      <div class="u-fixed-width">
-        {{ article.content }}
-      </div>
-
-      {% if article.tags.size > 0 %}
-        <div class="u-fixed-width">
-          <ul class="p-inline-list">
-            {% for tag in article.tags %} 
-              <li class="p-inline-list__item" style="margin-right: 0;">
-                <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
-              </li>
-            {% endfor %}
-          </ul>
-        </div>
-      {% endif %}
+  <div class="p-strip is-bordered">
+    <div class="u-fixed-width">
+      {{ article.content }}
     </div>
-  </article>
 
-  {% if blog.next_article or blog.previous_article %}
-    <section class="p-strip is-shallow is-bordered">
+    {% if article.tags.size > 0 %}
       <div class="u-fixed-width">
-        <div class="p-article-pagination">
-          {% if blog.previous_article %}
-            <a class="p-article-pagination__link--previous" href="{{ blog.previous_article }}">
-              <span class="p-article-pagination__label">Previous article</span>
-            </a>
-          {% endif %}
-
-          {% if blog.next_article %}
-            <a class="p-article-pagination__link--next" href="{{ blog.next_article }}">
-              <span class="p-article-pagination__label">Next article</span>
-            </a>
-          {% endif %}
-        </div>
+        <ul class="p-inline-list">
+          {% for tag in article.tags %} 
+            <li class="p-inline-list__item" style="margin-right: 0;">
+              <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}
+            </li>
+          {% endfor %}
+        </ul>
       </div>
-    </section>
-  {% endif %}
-</div>
+    {% endif %}
+  </div>
+</article>
+
+{% if blog.next_article or blog.previous_article %}
+  <section class="p-strip is-shallow is-bordered">
+    <div class="u-fixed-width">
+      <div class="p-article-pagination">
+        {% if blog.previous_article %}
+          <a class="p-article-pagination__link--previous" href="{{ blog.previous_article }}">
+            <span class="p-article-pagination__label">Previous article</span>
+          </a>
+        {% endif %}
+
+        {% if blog.next_article %}
+          <a class="p-article-pagination__link--next" href="{{ blog.next_article }}">
+            <span class="p-article-pagination__label">Next article</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
