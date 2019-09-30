@@ -28,8 +28,8 @@
   },
   "homepage": "https://github.com/canonical-web-and-design/buy.ubuntu.com#readme",
   "dependencies": {
-    "@shopify/slate": "^0.14.0",
-    "node-sass": "^4.12.0"
+    "@shopify/slate": "0.14.0",
+    "node-sass": "4.12.0"
   },
   "devDependencies": {
     "@shopify/slate-tools": "0.14.0"
