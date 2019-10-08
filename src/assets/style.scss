@@ -1,25 +1,12 @@
+$breakpoint-medium: 772px;
 $grid-border-color: #cdcdcd;
 
-.p-button {
-  &--shop-cta {
-    width: 100%;
+.p-button__postscript {
+  display: block;
+  margin-bottom: .5rem;
 
-    @media (min-width: 772px) {
-      padding: 1rem;
-    }
-
-    & + & {
-      margin-top: 1rem;
-    }
-  }
-
-  &__postscript {
-    display: block;
-    margin-bottom: .5rem;
-
-    @media (min-width: 772px) {
-      min-height: 2rem;
-    }
+  @media (min-width: $breakpoint-medium) {
+    min-height: 2rem;
   }
 }
 
@@ -66,7 +53,7 @@ $grid-border-color: #cdcdcd;
 }
 
 .p-list__item--tall {
-  @media (min-width: 772px) {
+  @media (min-width: $breakpoint-medium) {
     min-height: 4rem;
   }
 }
@@ -113,11 +100,11 @@ $grid-border-color: #cdcdcd;
 
   &__link--cart {
     order: 1;
-    padding: 0.5rem 1.5rem 0;
+    padding: 0.75rem 1.5rem;
     position: relative;
-
-    @media (max-width: 771px) {
-      padding: .75rem 1.5rem;
+    
+    @media (min-width: $breakpoint-medium) {
+      padding: 0.75rem 1.5rem 0;
     }
 
     &:hover {
@@ -125,7 +112,7 @@ $grid-border-color: #cdcdcd;
     }
 
     &-count::before {
-      background-color: #c7162b;
+      background-color: #e95420;
       border-radius: 100%;
       color: #fff;
       content: attr(data-item-count);
@@ -142,8 +129,39 @@ $grid-border-color: #cdcdcd;
 }
 
 .p-product-description {
-  @media (min-width: 772px) {
+  @media (min-width: $breakpoint-medium) {
     min-height: 5rem;
+  }
+}
+
+.p-strip--suru {
+  background-blend-mode: multiply, multiply, normal, normal;
+  background-color: #772953;
+  background-image:
+    linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
+    linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
+    linear-gradient(to top left, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 49.3%, rgba(247, 247, 247, 0) 50%, rgba(247, 247, 247, 0) 100%),
+    linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%); // order: right, left, white, gradient
+  background-position: top right, top left, right bottom -1px, left top;
+  background-repeat: no-repeat;
+  background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
+  margin: 0;
+  padding-bottom: 8rem;
+  padding-top: 4rem;
+  
+  @media (min-width: $breakpoint-medium) {
+    background-position: top right, top left, right bottom -1px, left top;
+    background-size: 74% 99.83%, 68% 91%, 103.8% 20.26%, 100% 99.8%;
+    padding-bottom: 11rem;
+    padding-top: 6rem;
+  }
+
+  h1 {
+    padding-top: 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0 !important;
   }
 }
 

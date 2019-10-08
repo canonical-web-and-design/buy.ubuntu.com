@@ -1,7 +1,7 @@
 {% include 'header' %}
 
 {% if cart.item_count > 0 %}
-  <section class="p-strip is-bordered is-shallow shopping-cart" style="background-color: #f1f1f1;">
+  <section class="p-strip is-bordered is-shallow shopping-cart" style="background-color: #f7f7f7;">
     <div class="row">
       <div class="col-12">
         <form action="/cart" method="post">
@@ -115,8 +115,8 @@
               <input type="checkbox" id="agree_to_tac" name="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
 
               {% comment %}For the checkout button to work, it needs to use a name attribute set to 'checkout'.{% endcomment %}
-              <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" name="checkout" type="submit">Check out</button>
-              <a class="p-button--neutral p-button--shop-cta" href="/">Continue shopping</a>
+              <button class="p-button--positive u-no-margin--bottom" name="checkout" type="submit">Check out</button>
+              <a class="p-button--neutral" href="/">Continue shopping</a>
             </div>
           </div>
         </form>
