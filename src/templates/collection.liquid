@@ -54,7 +54,7 @@
           {% endif %}
         {% endif %}
 
-        {{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item p-list__item--tall is-ticked">' | replace: '<p>', '<p class="p-product-description">' }}
+        {{ product.description | replace: '<ul>', '<ul class="p-list u-no-margin--bottom">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item p-list__item--tall is-ticked">' | replace: '<p>', '<p class="p-product-description">' }}
       </div>
     {% else %}
       <div class="row">

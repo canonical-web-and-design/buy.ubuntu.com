@@ -105,8 +105,13 @@
   top: .2rem;
   width: 1.5rem; }
 
+.p-product-description:last-child {
+  border-top: 1px solid #cdcdcd;
+  margin-top: 1rem;
+  padding-top: 1rem; }
+
 @media (min-width: 772px) {
-  .p-product-description {
+  .p-product-description:not(:last-child) {
     min-height: 5rem; } }
 
 .p-strip--suru {

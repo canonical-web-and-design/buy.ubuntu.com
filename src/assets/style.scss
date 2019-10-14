@@ -1,5 +1,5 @@
 $breakpoint-medium: 772px;
-$grid-border-color: #cdcdcd;
+$border-color: #cdcdcd;
 
 .p-button__postscript {
   display: block;
@@ -11,7 +11,7 @@ $grid-border-color: #cdcdcd;
 }
 
 .p-inline-grid {
-  border: 1px solid $grid-border-color;
+  border: 1px solid $border-color;
   border-radius: 2px;
   display: flex;
   list-style-type: none;
@@ -25,12 +25,12 @@ $grid-border-color: #cdcdcd;
     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
     &:hover {
-      background-color: $grid-border-color;
+      background-color: $border-color;
     }
   }
 
   li {
-    border-right: 1px solid $grid-border-color;
+    border-right: 1px solid $border-color;
     flex: 1 1 100%;
 
     &:last-child {
@@ -129,8 +129,16 @@ $grid-border-color: #cdcdcd;
 }
 
 .p-product-description {
-  @media (min-width: $breakpoint-medium) {
-    min-height: 5rem;
+  &:last-child {
+    border-top: 1px solid $border-color;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  &:not(:last-child) {
+    @media (min-width: $breakpoint-medium) {
+      min-height: 5rem;
+    }
   }
 }
 
