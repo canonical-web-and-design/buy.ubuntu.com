@@ -48,8 +48,12 @@
             <form action="/cart/add" method="post">
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <input type="hidden" name="quantity" value="{{ min_purchase }}">
-              <button type="submit" class="p-button--positive">Add to Cart</button>
-              {{ product.metafields.global.CTApostscript }}
+              {% if product.metafields.global.CTApostscript %}
+                <button type="submit" class="p-button--positive u-no-margin--bottom">Add to Cart</button>
+                {{ product.metafields.global.CTApostscript }}
+              {% else %}
+                <button type="submit" class="p-button--positive">Add to Cart</button>
+              {% endif %}
             </form>
           {% endif %}
         {% endif %}
