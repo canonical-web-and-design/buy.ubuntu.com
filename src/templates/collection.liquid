@@ -19,7 +19,7 @@
     {% for product in collection.products %}
       <div class="col-4 p-card">
         <h2>{{ product.title }}</h2>
-        <h3 style="color: #2c001e;">{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
+        <h3 style="color: #2c001e;">US {{ product.price | money_without_trailing_zeros }} <small>{{ settings.home_featured_pricing }}</small></h3>
         {% if product.available %}
           {% if product.variants.size > 1 %}
             {% for variant in product.variants %}

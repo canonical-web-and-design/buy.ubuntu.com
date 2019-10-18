@@ -16,7 +16,7 @@
     <div class="col-4 col-start-large-9">
       {% if settings.home_featured_collection_one %}
       {% assign collect_one = collections[settings.home_featured_collection_one] %}
-      <div class="p-card--highlighted">
+      <div class="p-card">
         <a href="{{ collect_one.url }}" class="row u-equal-height u-vertically-center">
           <div class="col-3 col-small-3 col-medium-3">
             <h3 class="p-heading--four">{{ collect_one.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h3>
@@ -31,7 +31,7 @@
 
       {% if settings.home_featured_collection_two %}
       {% assign collect_two = collections[settings.home_featured_collection_two] %}
-      <div class="p-card--highlighted">
+      <div class="p-card">
         <a href="{{ collect_two.url }}" class="row u-equal-height u-vertically-center">
           <div class="col-3 col-small-3 col-medium-3">
             <h3 class="p-heading--four">{{ collect_two.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h3>
@@ -46,7 +46,7 @@
 
       {% if settings.home_featured_collection_three %}
       {% assign collect_three = collections[settings.home_featured_collection_three] %}
-      <div class="p-card--highlighted">
+      <div class="p-card">
         <a href="{{ collect_three.url }}" class="row u-equal-height u-vertically-center">
           <div class="col-3 col-small-3 col-medium-3">
             <h3 class="p-heading--four">{{ collect_three.metafields.c_f['[c]Homepage title'] }}&nbsp;&rsaquo;</h3>
