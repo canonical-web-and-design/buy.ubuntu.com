@@ -1,6 +1,6 @@
 {% if template contains 'index' %}	
   <section style="background-color: {{ settings.homepage_hero_bgcolor }}; color: {{ settings.homepage_hero_textcolor }};">
-    <div class="p-strip is-deep" style="background-image: url({{ 'homepage_hero-graph.png' | asset_url }});">
+    <div class="p-strip p-strip--suru is-deep">
       <div class="u-fixed-width">
         <h1>{{ settings.homepage_main_heading }}</h1>
         <h2 class="p-heading--four">{{ settings.homepage_sub_heading }}</h2>
@@ -10,13 +10,13 @@
     </div>
   </section>
 {% elsif template contains 'cart' %}
-  <section class="cart-header" style="background-color: #f1f1f1;">
+  <section class="cart-header" style="background-color: #fff;">
     <div class="p-strip">
       <div class="row">
         <div class="col-12">
           <h1>Shopping Cart</h1>
           {% if cart.item_count < 1 %}
-            <h2>It appears that your cart is currently empty.</h2>
+            <h2>Your cart is currently empty.</h2>
             <h3>You can continue browsing <a href="/">here</a>.</h3>
           {% endif %}
         </div>
@@ -27,7 +27,7 @@
 {% elsif template contains 'collection' %}
   <div class="u-hide">{{ collection.handle }}</div>
 
-  <section style="background-color: {{ bgcolor }}; color: {{ txcolor }};">
+  <section style="background-color: #fff;">
     <div class="p-strip">
       <div class="row u-vertically-center">
         <div class="col-8">
@@ -37,12 +37,6 @@
             <p class="p-heading--four">{{ collection.description }}</p>
           {% endunless %}
         </div>
-
-        {% unless collection.image == blank or collection.image.empty? %}
-          <div class="col-start-large-10 col-3 u-hide--small">
-            <img src="{{ collection.image | img_url: "master" }}" alt="{{ collection.title }}" />
-          </div>
-        {% endunless %}
       </div>
     </div>
   </section>

@@ -28,7 +28,7 @@
     "home_mid_column_description": "Canonical announced Ubuntu Advantage for Infrastructure, a consolidated enterprise security, compliance and support offering that covers the full range of open source infrastructure capabilities.",
     "home_right_column_heading": "<a target=\"_blank\" href=\"https://blog.ubuntu.com/2019/03/25/kubernetes-1-14-now-available-from-canonical\">Kubernetes 1.14 now available from Canonical</a>",
     "home_right_column_description": "Full enterprise support is available for Kubernetes 1.14 using kubeadm deployments, its Charmed Kubernetes, and MicroK8s, its popular single-node deployment of Kubernetes.",
-    "home_customers_heading": "<span style=\"font-size: .875rem; text-transform: uppercase; line-height: 1.167;\">Ubuntu Advantage for Infrastructure Customers</span>",
+    "home_customers_heading": "<span style=\"font-size: .875rem; text-transform: uppercase; line-height: 1.167;\">Ubuntu Advantage for Infrastructure is used by</span>",
     "link_customer_one": false,
     "link_customer_one_url": "",
     "link_customer_two": false,

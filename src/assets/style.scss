@@ -1,30 +1,31 @@
-$grid-border-color: #cdcdcd;
+$breakpoint-medium: 772px;
+$border-color: #cdcdcd;
 
-.p-button {
-  &--shop-cta {
-    width: 100%;
+.p-button__postscript {
+  display: block;
+  margin-bottom: .5rem;
 
-    @media (min-width: 772px) {
-      padding: 1rem;
-    }
+  @media (min-width: $breakpoint-medium) {
+    min-height: 2rem;
+  }
+}
 
-    & + & {
-      margin-top: 1rem;
-    }
+.p-cart-actions {
+  @media (min-width: $breakpoint-medium) {
+    order: 1;
   }
 
-  &__postscript {
-    display: block;
-    margin-bottom: .5rem;
+  .p-button--neutral {
+    margin: 1rem 0 2rem;
 
-    @media (min-width: 772px) {
-      min-height: 2rem;
+    @media (min-width: $breakpoint-medium) {
+      margin: 0 0 0 1rem;
     }
   }
 }
 
 .p-inline-grid {
-  border: 1px solid $grid-border-color;
+  border: 1px solid $border-color;
   border-radius: 2px;
   display: flex;
   list-style-type: none;
@@ -38,12 +39,12 @@ $grid-border-color: #cdcdcd;
     transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
 
     &:hover {
-      background-color: $grid-border-color;
+      background-color: $border-color;
     }
   }
 
   li {
-    border-right: 1px solid $grid-border-color;
+    border-right: 1px solid $border-color;
     flex: 1 1 100%;
 
     &:last-child {
@@ -65,8 +66,31 @@ $grid-border-color: #cdcdcd;
   }
 }
 
+.p-list--divided {
+  [class*="col-"] {
+    padding: 1rem 0 0;
+
+    @media (min-width: $breakpoint-medium) {
+      padding: 2rem 0;
+
+      > * {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    &:last-child {
+      padding-bottom: 1rem;
+
+      @media (min-width: $breakpoint-medium) {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}
+
 .p-list__item--tall {
-  @media (min-width: 772px) {
+  @media (min-width: $breakpoint-medium) {
     min-height: 4rem;
   }
 }
@@ -95,12 +119,6 @@ $grid-border-color: #cdcdcd;
     padding-top: 0.95rem;
   }
 
-  .p-navigation__logo span {
-    align-self: flex-end; 
-    margin-left: 0.5rem; 
-    padding-bottom: 0.15rem;
-  }
-
   .p-navigation__link > a {
     &::before {
       background: transparent;
@@ -113,11 +131,11 @@ $grid-border-color: #cdcdcd;
 
   &__link--cart {
     order: 1;
-    padding: 0.5rem 1.5rem 0;
+    padding: 0.75rem 1.5rem;
     position: relative;
-
-    @media (max-width: 771px) {
-      padding: .75rem 1.5rem;
+    
+    @media (min-width: $breakpoint-medium) {
+      padding: 0.75rem 1.5rem 0;
     }
 
     &:hover {
@@ -125,13 +143,13 @@ $grid-border-color: #cdcdcd;
     }
 
     &-count::before {
-      background-color: #c7162b;
+      background-color: #e95420;
       border-radius: 100%;
       color: #fff;
       content: attr(data-item-count);
       display: block;
-      height: 1.5rem;
       font-weight: bold;
+      height: 1.5rem;
       position: absolute;
       right: .7rem;
       text-align: center;
@@ -142,9 +160,63 @@ $grid-border-color: #cdcdcd;
 }
 
 .p-product-description {
-  @media (min-width: 772px) {
-    min-height: 5rem;
+  &:last-child {
+    border-top: 1px solid $border-color;
+    margin-top: 1rem;
+    padding-top: 1rem;
   }
+
+  &:not(:last-child) {
+    @media (min-width: $breakpoint-medium) {
+      min-height: 5rem;
+    }
+  }
+}
+
+.p-strip--suru {
+  background-blend-mode: multiply, multiply, normal, normal;
+  background-color: #772953;
+  background-image:
+    linear-gradient(to bottom left, rgba(119, 41, 83, 0.16) 0, rgba(119, 41, 83, 0.16) 49.9%, transparent 50%),
+    linear-gradient(to bottom right, rgba(228, 228, 228, 0.5) 0, rgba(228, 228, 228, 0.5) 49.9%, transparent 50%),
+    linear-gradient(to top left, rgba(247, 247, 247, 1) 0%, rgba(247, 247, 247, 1) 49.3%, rgba(247, 247, 247, 0) 50%, rgba(247, 247, 247, 0) 100%),
+    linear-gradient(-89deg, #e95420 0%, #772953 42%, #2c001e 94%); // order: right, left, white, gradient
+  background-position: top right, top left, right bottom -1px, left top;
+  background-repeat: no-repeat;
+  background-size: 135% 97.83%, 148% 83%, 119% 13%, 100% 99.83%;
+  margin: 0;
+  padding-bottom: 8rem;
+  padding-top: 4rem;
+  
+  @media (min-width: $breakpoint-medium) {
+    background-position: top right, top left, right bottom -1px, left top;
+    background-size: 74% 99.83%, 68% 91%, 103.8% 20.26%, 100% 99.8%;
+    padding-bottom: 11rem;
+    padding-top: 6rem;
+  }
+
+  h1 {
+    padding-top: 0;
+  }
+
+  p:last-of-type {
+    margin-bottom: 0 !important;
+  }
+}
+
+.u-border {
+  &--bottom {
+    border-bottom: 1px solid $border-color;
+  }
+
+  &--top {
+    border-top: 1px solid $border-color;
+  }
+}
+
+.u-justified {
+  display: flex; 
+  justify-content: space-between;
 }
 
 .is-ticked {

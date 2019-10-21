@@ -1,11 +1,11 @@
 {% include 'header' %}
 
 {% if cart.item_count > 0 %}
-  <section class="p-strip is-bordered is-shallow shopping-cart" style="background-color: #f1f1f1;">
+  <section class="p-strip is-bordered is-shallow u-no-padding--top shopping-cart" style="background-color: #fff;">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 u-sv3">
         <form action="/cart" method="post">
-          <ul class="p-list u-sv2">
+          <ul class="p-list--divided u-no-margin--bottom">
             {% for item in cart.items %}
               {% assign collection_url = item.product.collections.last.url %}
               {% if collection_url == '/collections/frontpage' or collection_url == blank %}
@@ -36,7 +36,7 @@
                 {% endif %}
               {% endfor %}
 
-              <li class="p-card--highlighted cart_item" data-increment-amount="{{ min_increment }}" data-min-amount="{{ min_purchase }}" data-product-index="{{ forloop.index }}">
+              <li class="p-list__item cart_item {% if forloop.first %}u-border--top{% endif %} {% if forloop.last %}u-border--bottom{% endif %}" data-increment-amount="{{ min_increment }}" data-min-amount="{{ min_purchase }}" data-product-index="{{ forloop.index }}">
                 {% assign product_icon = 'icon-' %}
                 {% if item.title contains 'Desktop' %}
                   {% assign product_icon = product_icon | append: 'desktop.png' %}
@@ -47,16 +47,11 @@
                 {% endif %}
 
                 <div class="row u-vertically-center">
-                  <div class="col-2 u-hide--small">
-                    <img src="{{ product_icon | asset_url }}" alt="{{ item.title }}">
-                  </div>
-                  
-                  <div class="col-8">
-                    <h2><a href="{{ collection_url }}" title="{{ item.title }}">{{ item.title }}</a></h2>
-                    <h3>{{ item.line_price | money_with_currency }}</h3>
+                  <div class="col-5">
+                    <h2 class="p-heading--three"><a href="{{ collection_url }}" title="{{ item.title }}">{{ item.title }}</a></h2>
                   </div>
 
-                  <div class="col-2 col-medium-4 col-start-medium-3">
+                  <div class="col-3">
                     <ul class="p-inline-grid u-align--center cart_item--qty">
                       <li>
                         <span class="p-inline-grid__cta decrement" style="line-height: 2.2rem; display: block;">
@@ -78,12 +73,11 @@
                     {% if min_quantity != '1' %}
                       <small class="u-float-right u-no-margin--bottom">Minimum order: {{ min_quantity }}</small>
                     {% endif %}
+                  </div>
 
-                    <div class="row u-align--right">
-                      <div class="col-2">
-                        <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666; display: block; margin-top: 1rem;">Remove</a>
-                      </div>
-                    </div>
+                  <div class="col-4 u-justified" style="align-items: center;">
+                    <a href="/cart/change?line={{ forloop.index }}&quantity=0" class="p-muted-heading" style="color: #666;;">Remove</a>
+                    <h3>{{ item.line_price | money_without_trailing_zeros }}</h3>
                   </div>
                 </div>
               </li>
@@ -91,7 +85,24 @@
           </ul>
 
           <div class="row">
-            <div class="col-6">
+            <div class="col-4 p-cart-actions">
+              <div class="u-justified u-border--top" style="padding: 2rem 0;">
+                <h3 class="p-heading--four u-no-margin--bottom">Subtotal:</h3>
+                <h4 class="p-heading--three u-no-margin--bottom">US {{ cart.total_price | money_without_trailing_zeros }}</h4>
+              </div>
+
+              <hr style="height: 2px;" />
+
+              <input type="checkbox" id="agree_to_tac" name="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;"><small>{{ settings.tac_copy }}</small></label>
+
+              {% comment %}For the checkout button to work, it needs to use a name attribute set to 'checkout'.{% endcomment %}
+              <button class="p-button--positive u-no-margin--bottom" name="checkout" type="submit">Check out</button>
+              <a class="p-button--neutral" href="/">Continue shopping</a>
+
+              <hr class="u-hide--medium u-hide--large" />
+            </div>
+
+            <div class="col-8" style="padding: 2rem 0;">
               {% if settings.cart_promo_toggle %}
                 <div class="row u-sv3">
                   <div class="col-1 col-small-1 col-medium-1">
@@ -103,20 +114,7 @@
                     <a href="{{ settings.cart_promo_link }}">{{ settings.cart_promo_link_copy }} ›</a>
                   </div>
                 </div>
-                <hr class="u-hide--medium u-hide--large" />
               {% endif %}
-            </div>
-
-            <div class="col-5 col-start-large-9">
-              <div class="u-clearfix">
-                <h3 class="p-heading--four u-float-left">Subtotal:</h3>
-                <span class="p-heading--three u-float-right">{{ cart.total_price | money }}</span>
-              </div>
-              <input type="checkbox" id="agree_to_tac" name="agree_to_tac" required><label for="agree_to_tac" style="margin-bottom: 1rem;">{{ settings.tac_copy }}</label>
-
-              {% comment %}For the checkout button to work, it needs to use a name attribute set to 'checkout'.{% endcomment %}
-              <button class="p-button--positive p-button--shop-cta u-no-margin--bottom" name="checkout" type="submit">Check out</button>
-              <a class="p-button--neutral p-button--shop-cta" href="/">Continue shopping</a>
             </div>
           </div>
         </form>

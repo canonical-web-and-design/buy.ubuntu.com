@@ -14,12 +14,12 @@
 
 {% include 'header' %}
 
-<section class="p-strip is-shallow is-bordered" style="background-color: {{ bgcolor }};">
+<section class="p-strip--light is-shallow is-bordered">
   <div class="row u-equal-height">
     {% for product in collection.products %}
-      <div class="col-4 p-card--highlighted">
+      <div class="col-4 p-card">
         <h2>{{ product.title }}</h2>
-        <h3 style="color: #2c001e;">{{ product.price | money_with_currency }} <small>{{ settings.home_featured_pricing }}</small></h3>
+        <h3 style="color: #2c001e;">US {{ product.price | money_without_trailing_zeros }} <small>{{ settings.home_featured_pricing }}</small></h3>
         {% if product.available %}
           {% if product.variants.size > 1 %}
             {% for variant in product.variants %}
@@ -34,7 +34,7 @@
               <form action="/cart/add" method="post">
                 <input type="hidden" name="id" value="{{ variant.id }}">
                 <input type="hidden" name="quantity" value="{{ min_purchase }}">
-                <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
+                <button type="submit" class="p-button--positive">Add to Cart</button>
               </form>
             {% endfor %}
           {% else %}
@@ -48,13 +48,17 @@
             <form action="/cart/add" method="post">
               <input type="hidden" name="id" value="{{ product.variants.first.id }}">
               <input type="hidden" name="quantity" value="{{ min_purchase }}">
-              <button type="submit" class="p-button--positive p-button--shop-cta">Add to Cart</button>
-              {{ product.metafields.global.CTApostscript }}
+              {% if product.metafields.global.CTApostscript %}
+                <button type="submit" class="p-button--positive u-no-margin--bottom">Add to Cart</button>
+                {{ product.metafields.global.CTApostscript }}
+              {% else %}
+                <button type="submit" class="p-button--positive">Add to Cart</button>
+              {% endif %}
             </form>
           {% endif %}
         {% endif %}
 
-        {{ product.description | replace: '<ul>', '<ul class="p-list">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item p-list__item--tall is-ticked">' | replace: '<p>', '<p class="p-product-description">' }}
+        {{ product.description | replace: '<ul>', '<ul class="p-list u-no-margin--bottom">' | replace: '<li>**', '<li>' | replace: '<li>', '<li class="p-list__item p-list__item--tall is-ticked">' | replace: '<p>', '<p class="p-product-description">' }}
       </div>
     {% else %}
       <div class="row">
