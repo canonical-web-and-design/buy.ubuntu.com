@@ -45,7 +45,7 @@
   height: 100%;
   width: 100%; }
 
-.p-inline-grid input[readonly] {
+.p-inline-grid [type="number"] {
   border: 0;
   color: #333;
   margin: 0;
@@ -120,8 +120,8 @@
   color: #fff;
   content: attr(data-item-count);
   display: block;
-  height: 1.5rem;
   font-weight: bold;
+  height: 1.5rem;
   position: absolute;
   right: .7rem;
   text-align: center;
