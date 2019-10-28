@@ -57,7 +57,7 @@ $border-color: #cdcdcd;
     }
   }
 
-  input[readonly] {
+  [type="number"] {
     border: 0;
     color: #333;
     margin: 0;
