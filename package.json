@@ -30,7 +30,7 @@
   "homepage": "https://github.com/canonical-web-and-design/buy.ubuntu.com#readme",
   "dependencies": {
     "@shopify/slate": "0.14.0",
-    "node-sass": "4.13.0",
+    "node-sass": "4.13.1",
     "uglify-js": "3.7.6"
   },
   "devDependencies": {
