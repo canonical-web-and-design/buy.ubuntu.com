@@ -31,7 +31,7 @@
   "dependencies": {
     "@shopify/slate": "0.14.0",
     "node-sass": "4.14.0",
-    "uglify-js": "3.9.0"
+    "uglify-js": "3.9.1"
   },
   "devDependencies": {
     "@shopify/slate-tools": "0.14.0"
