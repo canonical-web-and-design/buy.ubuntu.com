@@ -30,8 +30,8 @@
   "homepage": "https://github.com/canonical-web-and-design/buy.ubuntu.com#readme",
   "dependencies": {
     "@shopify/slate": "0.14.0",
-    "node-sass": "4.14.1",
-    "uglify-js": "3.11.4"
+    "uglify-js": "3.11.4",
+    "node-sass": "5.0.0"
   },
   "devDependencies": {
     "@shopify/slate-tools": "0.14.0"
